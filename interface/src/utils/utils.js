@@ -9,11 +9,6 @@ export const startVideo = (bool) => {
         if (bool) { video.srcObject = stream; }
         else {
           video.srcObject = null;
-          // stream.getTracks().forEach(track => {
-          //   console.log(track)
-          //   track.stop()
-          //   console.log(track.enabled)
-          // })}
         }
       })
       .catch(function (error) {
@@ -38,7 +33,8 @@ export const startVideo = (bool) => {
 }
 
 export const startDetection = (bool) => {
-  const video = document.querySelector("#invisible");
+  const video = document.querySelector("#videoElement");;
+
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(function (stream) {

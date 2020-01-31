@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header className="Header"/>
         <Router>
           <LoginPage path='/' />
           <Dashboard path='/dashboard' />

@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import { Link } from '@reach/router'
 import * as faceapi from 'face-api.js'
-import { startDetection } from '../utils/utils'
+import { startDetection, startVideo } from '../utils/utils'
 
 
 
 export default class Dashboard extends Component {
+
+  state = { videoPresent: false }
+
   render() {
+    const {videoPresent}= this.state
+    console.log(this.state.videoPresent)
     return (
       <div className="dashboard">
         <h2>Dashboard</h2>
-        <button onClick={() => {startDetection(true)}}>Start detection</button>
-        <button onClick={() => {startDetection(false)}}>Stop detection</button>
+        <button onClick={() => { startDetection(true) }}>Start detection</button>
+        <button onClick={() => { startDetection(false) }}>Stop detection</button>
         <Link to="/webcam">
-          <button>
-            View cam
-         </button>
+        <button>
+          View cam
+        </button>
         </Link>
-        <video autoPlay={true} id="invisible" width="0" height="0"></video>
+        {this.state.videoPresent && <video autoPlay={true} id='videoElement' width="640" height="480"></video>}
+        {!this.state.videoPresent && <video autoPlay={true} id='videoElement' width="0" height="0"></video>}
       </div>
     )
   }
@@ -32,4 +38,6 @@ export default class Dashboard extends Component {
       console.log('weights loaded')
     })
   }
+
+
 }
