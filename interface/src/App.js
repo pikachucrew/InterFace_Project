@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header className="Header"/>
-        <Router>
+        <Router className="Router">
           <LoginPage path='/' />
           <Dashboard path='/dashboard' />
           <CamPage path='/webcam' startVideo={startVideo}/>
