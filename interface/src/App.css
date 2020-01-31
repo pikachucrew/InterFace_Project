@@ -21,3 +21,9 @@ body {
 Header {
   width: 100%;
 }
+
+#videoElement, #canvasElement {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}
