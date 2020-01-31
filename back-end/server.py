@@ -5,12 +5,20 @@ import sqlite3
 import json
 import time
 
-print(time.ctime(time.time()))
+ts = time.gmtime()
+print(time.strftime("%Y-%m-%d %H:%M:%S", ts))
+
 
 
 server = Flask(__name__)
 
 CORS(server)
+
+
+# def format_time(str):
+
+
+    
 
 @server.route('/<username>', methods = ['GET', 'POST'])
 def handle_request(username):
@@ -20,9 +28,12 @@ def handle_request(username):
 
     #define model functions....
     def get_rows():
-        
-         c.execute('SELECT * FROM emotions')
-         return c.fetchall() 
+        start_time = request.args.get('from')
+        end_time = request.args.get('to')
+        if start_time != None:
+            c.execute('SELECT * FROM emotions WHERE timestamp < ? AND timestamp > ?', )
+        c.execute('SELECT * FROM emotions')
+        return c.fetchall() 
     
     def insert_rows(data):
         c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (

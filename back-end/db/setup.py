@@ -13,7 +13,8 @@ c.execute("""CREATE TABLE emotions (
     fearful integer,
     disgusted integer, 
     surprised integer, 
-    timestamp text
+    date text,
+    time text
 )""")
 
 conn.close()
