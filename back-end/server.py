@@ -16,6 +16,9 @@ CORS(server)
 
 
 # def format_time(str):
+#     ts = time.gmtime()
+#     formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", ts)
+#     return [formatted_time.slice(4) + formatted_time.slice(5, 7) + formatted_time.slice(8, 10), formatted_time.slice(11)]
 
 
     
