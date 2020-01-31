@@ -3,7 +3,9 @@ from flask import request
 from flask_cors import CORS
 import sqlite3
 import json
+import time
 
+print(time.ctime(time.time()))
 
 
 server = Flask(__name__)
@@ -18,12 +20,13 @@ def handle_request(username):
 
     #define model functions....
     def get_rows():
+        
          c.execute('SELECT * FROM emotions')
          return c.fetchall() 
     
     def insert_rows(data):
         c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (
-        data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], data['timestamp']
+        data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], time.ctime(time.time())
         ))
         conn.commit()
 
