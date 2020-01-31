@@ -28,10 +28,20 @@ def handle_request(username):
     def get_rows(username):
         start_time = request.args.get('from')
         end_time = request.args.get('to')
-        if start_time != None:
-            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND username=?', (start_time, end_time, username))
+        #gets all data for a specific user
+        if (start_time == None and end_time == None):
+            c.execute('SELECT * FROM emotions WHERE username=?', (username,))  
+        #gets all data up to specific time for specific user    
+        elif (start_time == None and end_time != None): 
+            c.execute('SELECT * FROM emotions WHERE time < ? AND username=?', (end_time, username))
+        #get all data from specific time for specific user    
+        elif (start_time != None and end_time == None):
+            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND username=?', (start_time, format_time()[1], username))
+        #gets all data from specific time to specific time for specific user    
         else:
-            c.execute('SELECT * FROM emotions WHERE username=?', (username,))
+            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND username=?', (start_time, end_time, username))
+
+                       
         return c.fetchall() 
     
     def insert_rows(data, username):
