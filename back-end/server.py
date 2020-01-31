@@ -5,23 +5,17 @@ import sqlite3
 import json
 import time
 
-ts = time.gmtime()
-print(time.strftime("%Y-%m-%d %H:%M:%S", ts))
-
-
-
 server = Flask(__name__)
-
 CORS(server)
 
+def format_time():
+    ts = time.gmtime()
+    formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", ts)
+    return [formatted_time[0:4] + formatted_time[5:7] + formatted_time[8:10], formatted_time[11:]]
 
-# def format_time(str):
-#     ts = time.gmtime()
-#     formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", ts)
-#     return [formatted_time.slice(4) + formatted_time.slice(5, 7) + formatted_time.slice(8, 10), formatted_time.slice(11)]
+print(format_time()[0])
+print(format_time()[1])
 
-
-    
 
 @server.route('/<username>', methods = ['GET', 'POST'])
 def handle_request(username):
@@ -34,13 +28,14 @@ def handle_request(username):
         start_time = request.args.get('from')
         end_time = request.args.get('to')
         if start_time != None:
-            c.execute('SELECT * FROM emotions WHERE timestamp < ? AND timestamp > ?', )
-        c.execute('SELECT * FROM emotions')
+            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ?', (start_time, end_time))
+        else:
+            c.execute('SELECT * FROM emotions')
         return c.fetchall() 
     
     def insert_rows(data):
-        c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (
-        data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], time.ctime(time.time())
+        c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (
+        data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], format_time()[0], format_time()[1]
         ))
         conn.commit()
 
