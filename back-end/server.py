@@ -19,36 +19,38 @@ print(format_time()[1])
 
 @server.route('/<username>', methods = ['GET', 'POST'])
 def handle_request(username):
+  
     #create connection to database...
     conn = sqlite3.connect('db/interface.db')
     c = conn.cursor()
 
     #define model functions....
-    def get_rows():
+    def get_rows(username):
         start_time = request.args.get('from')
         end_time = request.args.get('to')
         if start_time != None:
-            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ?', (start_time, end_time))
+            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND username=?', (start_time, end_time, username))
         else:
-            c.execute('SELECT * FROM emotions')
+            c.execute('SELECT * FROM emotions WHERE username=?', (username,))
         return c.fetchall() 
     
-    def insert_rows(data):
-        c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (
-        data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], format_time()[0], format_time()[1]
+    def insert_rows(data, username):
+       
+        c.execute('INSERT INTO emotions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (
+        username, data['neutral'], data['happy'], data['sad'], data['angry'], data['fearful'], data['disgusted'], data['surprised'], format_time()[0], format_time()[1]
         ))
         conn.commit()
 
-    # controller and router - sends json array of object corresponding to table rows...
+    # controller and router - sends json array of objects from corresponding table rows...
     if request.method == 'GET':
-        return (json.dumps(get_rows()), 200)
+        return (json.dumps(get_rows(username)), 200)
 
 
     
     if request.method == 'POST': 
         data = request.get_json()
-        insert_rows(data)
-        return (json.dumps(get_rows()), 200)
+        insert_rows(data, username)
+        return (json.dumps(get_rows(username)), 200)
     
     #close connection to db...
     conn.close()
