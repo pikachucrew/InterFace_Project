@@ -20,7 +20,7 @@ print(format_time()[1])
 @server.route('/<username>', methods = ['GET', 'POST'])
 def handle_request(username):
   
-    #create connection to database...
+    #create connection to database....
     conn = sqlite3.connect('db/interface.db')
     c = conn.cursor()
 
