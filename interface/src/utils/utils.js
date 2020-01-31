@@ -1,12 +1,20 @@
 import * as faceapi from 'face-api.js'
 
-export const startVideo = () => {
+export const startVideo = (bool) => {
   const video = document.querySelector("#videoElement");
   const canvas = document.querySelector('#canvasElement')
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(function (stream) {
-        video.srcObject = stream;
+        if (bool) { video.srcObject = stream; }
+        else {
+          video.srcObject = null;
+          // stream.getTracks().forEach(track => {
+          //   console.log(track)
+          //   track.stop()
+          //   console.log(track.enabled)
+          // })}
+        }
       })
       .catch(function (error) {
         console.log("Something went wrong!");
@@ -14,15 +22,12 @@ export const startVideo = () => {
   }
 
   video.addEventListener('play', () => {
-    //const canvas = faceapi.createCanvasFromMedia(video)
-    //document.body.append(canvas)
+
     const displaySize = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displaySize)
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
       console.log(detections)
-
-      // console.log(detections)
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
       faceapi.draw.drawDetections(canvas, resizedDetections)
@@ -32,13 +37,20 @@ export const startVideo = () => {
   })
 }
 
-export const startDetection = () => {
+export const startDetection = (bool) => {
   const video = document.querySelector("#invisible");
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(function (stream) {
-        video.srcObject = stream;
-      })
+        if (bool) {video.srcObject = stream;}
+        else {
+          video.srcObject = null;
+          // stream.getTracks().forEach(track => {
+          //   console.log(track)
+          //   track.stop()
+          //   console.log(track.enabled)
+          // })}
+      }})
       .catch(function (error) {
         console.log("Something went wrong!");
       });
@@ -49,4 +61,12 @@ export const startDetection = () => {
       console.log(detections)
     }, 100)
   })
+}
+
+export const stopDetection = () => {
+  const stream = navigator.mediaDevices.getUserMedia({ video: true })
+  stream.getTracks().forEach(track => {
+    track.stop()
+  })
+
 }

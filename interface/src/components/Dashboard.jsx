@@ -10,7 +10,8 @@ export default class Dashboard extends Component {
     return (
       <div className="dashboard">
         <h2>Dashboard</h2>
-        <button onClick={startDetection}>Start detection</button>
+        <button onClick={() => {startDetection(true)}}>Start detection</button>
+        <button onClick={() => {startDetection(false)}}>Stop detection</button>
         <Link to="/webcam">
           <button>
             View cam
