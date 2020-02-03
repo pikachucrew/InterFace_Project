@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import fire from '../config';
-import { navigate } from '@reach/router';
 
 
 class LoginPage extends Component {
   state = {
     email: '',
     password: '',
-    invalid: false
+    invalid: false,
+    newUser: false,
+    signedUp: false,
+    newEmail: '',
+    newPassword: ''
   };
 
   handleChange = ({ target }) => {
@@ -28,18 +31,37 @@ class LoginPage extends Component {
   };
 
   signup = e => {
-    const { email, password } = this.state;
+    const { newEmail, newPassword } = this.state;
     e.preventDefault();
     fire
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(newEmail, newPassword)
+      .then(() => {
+        this.setState({ signedUp: true, invalid: false });
+      })
       .catch(err => {
         this.setState({ invalid: true });
       });
   };
 
+  newUser = () => {
+    this.setState(currentState => {
+      return {
+        newUser: !currentState.newUser
+      };
+    });
+  };
+
   render() {
-    const { email, password, invalid } = this.state;
+    const {
+      email,
+      password,
+      invalid,
+      newUser,
+      newEmail,
+      newPassword,
+      signedUp
+    } = this.state;
     return (
       <div>
         <div class="bg-blue-200 flex flex-row justify-center items-center">
@@ -68,10 +90,34 @@ class LoginPage extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24">Log In</button>
-            <button onClick={this.signup} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded m-4 w-24">Sign Up</button>
+
+          <button type="submit">Log In</button>
         </form>
-        </div>
+        <button onClick={this.newUser}>New User?</button>
+        {newUser && (
+          <form onSubmit={this.signup}>
+            <label>
+              E-mail address:
+              <input
+                type="email"
+                name="newEmail"
+                value={newEmail}
+                onChange={this.handleChange}
+              />
+            </label>
+            <label>
+              Password:
+              <input
+                type="password"
+                name="newPassword"
+                value={newPassword}
+                onChange={this.handleChange}
+              />
+            </label>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24">Sign Up</button>
+            {signedUp && <p>Signed up! You may now log in with your details</p>}
+          </form>
+        )}
       </div>
     );
   }
