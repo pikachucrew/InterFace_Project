@@ -3,23 +3,27 @@ import * as api from '../api'
 
 import React, { Component } from 'react'
 // import BarChart from './Charts/BarChart'
-// import Donut from './Charts/Donut'
+import Donut from './Charts/Donut'
 // import LineChart from './Charts/LineChart'
 // import DynamicLine from './Charts/DynamicLine'
 
 
 export default class DataVisualisation extends Component {
   state = {
-    username: 'bigcal'
+    username: 'bigcal',
+    data: [],
+    isLoading: true
   }
 
   render() {
+    const {data,isLoading}=this.state
+    // console.log(this.state)
+    if (isLoading ===true) return <p>Loading...</p> 
     return (
       <div>
-        <p>what up yo</p>
-        {/* <BarChart />
-        <Donut />
-        <LineChart />
+        {/* <BarChart /> */}
+        <Donut data={data} />
+        {/* <LineChart />
         <DynamicLine /> */}
       </div>
     )
@@ -28,7 +32,7 @@ export default class DataVisualisation extends Component {
   componentDidMount() {
     const { username } = this.state
     api.getEmotions(username).then(response => {
-      console.log(response)
+      this.setState({data:response, isLoading:false})
     })
   }
 }
