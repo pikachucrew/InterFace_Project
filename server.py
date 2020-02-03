@@ -20,26 +20,32 @@ def handle_request(email):
     #hashes the user's email address
     user_hash = hashlib.sha256(email.encode()).hexdigest()
 
+
     #create connection to database....
     conn = sqlite3.connect('db/interface.db')
     c = conn.cursor()
 
     #define model functions....
     def get_rows(user_hash):
+
+        #all columns but email
+        desired_columns = 'neutral, happy, sad, angry, fearful, disgusted, surprised, date, time'
+
         start_time = request.args.get('from')
         end_time = request.args.get('to')
+
         #gets all data for a specific user
         if (start_time == None and end_time == None):
-            c.execute('SELECT * FROM emotions WHERE email = ?', (user_hash,))  
+            c.execute('SELECT neutral, happy, sad, angry, fearful, disgusted, surprised, date, time FROM emotions WHERE email = ?', (user_hash,))  
         #gets all data up to specific time for specific user    
         elif (start_time == None and end_time != None): 
-            c.execute('SELECT * FROM emotions WHERE time < ? AND email = ?', (end_time, user_hash))
+            c.execute('SELECT neutral, happy, sad, angry, fearful, disgusted, surprised, date, time FROM emotions WHERE time < ? AND email = ?', (end_time, user_hash))
         #get all data from specific time for specific user    
         elif (start_time != None and end_time == None):
-            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND email = ?', (start_time, format_time()[1], user_hash))
+            c.execute('SELECT neutral, happy, sad, angry, fearful, disgusted, surprised, date, time FROM emotions WHERE time > ? AND time < ? AND email = ?', (start_time, format_time()[1], user_hash))
         #gets all data from specific time to specific time for specific user    
         else:
-            c.execute('SELECT * FROM emotions WHERE time > ? AND time < ? AND email = ?', (start_time, end_time, user_hash))
+            c.execute('SELECT neutral, happy, sad, angry, fearful, disgusted, surprised, date, time FROM emotions WHERE time > ? AND time < ? AND email = ?', (start_time, end_time, user_hash))
 
         return c.fetchall() 
     
