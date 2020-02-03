@@ -87,3 +87,7 @@ export const manipulateEmotions = (detections) => {
   }, {})
 
 }
+
+export const donutManipulator = () =>{
+  
+}
