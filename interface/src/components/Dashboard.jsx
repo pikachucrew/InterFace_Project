@@ -15,22 +15,22 @@ export default class Dashboard extends Component {
         <h2>Dashboard</h2>
         <button
           onClick={() => {
-            startDetection(true);
+            startDetection(true, user);
           }}
-        >
+        class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
           Start detection
         </button>
         <button
           onClick={() => {
-            startDetection(false);
+            startDetection(false, user);
           }}
-        >
+          class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
           Stop detection
         </button>
         <Link to="/webcam">
-          <button>View cam</button>
+          <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">View cam</button>
         </Link>
-        <button onClick={this.logout}>Log Out</button>
+        <button onClick={this.logout} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">Log Out</button>
         {this.state.videoPresent && (
           <video
             autoPlay={true}

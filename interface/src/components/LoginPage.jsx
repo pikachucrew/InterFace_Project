@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../config';
 import { navigate } from '@reach/router';
 
+
 class LoginPage extends Component {
   state = {
     email: '',
@@ -41,29 +42,36 @@ class LoginPage extends Component {
     const { email, password, invalid } = this.state;
     return (
       <div>
+        <div class="bg-blue-200 flex flex-row justify-center items-center">
+          {/* <h3 class="text-3xl">Welcome to the Interface Web App!</h3> */}
+          <div class="text-xl">
+          </div>
+        </div>
+        <div class="bg-blue-200">
         {invalid && <p>Invalid Details</p>}
-        <form onSubmit={this.login}>
-          <label>
+        <form onSubmit={this.login} class="flex flex-col items-center bg-white w-auto">
+          <label class="">
             E-mail address:
-            <input
+            <input class="m-4 w-auto"
               type="email"
               name="email"
               value={email}
               onChange={this.handleChange}
             />
           </label>
-          <label>
+          <label class="w-auto">
             Password:
-            <input
+            <input class="m-4"
               type="password"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Log In</button>
-          <button onClick={this.signup}>Sign Up</button>
+          <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24">Log In</button>
+            <button onClick={this.signup} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded m-4 w-24">Sign Up</button>
         </form>
+        </div>
       </div>
     );
   }

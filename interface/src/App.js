@@ -32,7 +32,7 @@ export default class App extends Component {
     const { user } = this.state;
     console.log(user);
     return (
-      <div className="App">
+      <div className="App" class="h-screen">
         <Header className="Header" />
         {user ? (
           <Router className="Router">
