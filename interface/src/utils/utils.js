@@ -1,4 +1,6 @@
 import * as faceapi from 'face-api.js'
+import axios from 'axios'
+import * as api from '../api'
 
 export const startVideo = (bool) => {
   const video = document.querySelector("#videoElement");
@@ -54,7 +56,8 @@ export const startDetection = (bool) => {
   video.addEventListener('play', () => {
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-      console.log(detections)
+      // console.log(detections)
+
     }, 100)
   })
 }
