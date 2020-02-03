@@ -14,7 +14,7 @@ def format_time():
     formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", ts)
     return [formatted_time[0:4] + formatted_time[5:7] + formatted_time[8:10], formatted_time[11:]]
 
-@server.route('/<username>', methods = ['GET', 'POST'])
+@server.route('/<email>', methods = ['GET', 'POST'])
 def handle_request(email):
 
     #hashes the user's email address
