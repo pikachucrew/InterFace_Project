@@ -1,5 +1,4 @@
 import * as faceapi from 'face-api.js'
-import axios from 'axios'
 import * as api from '../api'
 
 export const startVideo = (bool) => {
@@ -34,13 +33,13 @@ export const startVideo = (bool) => {
   })
 }
 
-export const startDetection = (bool) => {
+export const startDetection = (bool, username) => {
   const video = document.querySelector("#videoElement");;
 
   if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then(function (stream) {
-        if (bool) {video.srcObject = stream;}
+        if (bool) { video.srcObject = stream; }
         else {
           video.srcObject = null;
           // stream.getTracks().forEach(track => {
@@ -48,7 +47,8 @@ export const startDetection = (bool) => {
           //   track.stop()
           //   console.log(track.enabled)
           // })}
-      }})
+        }
+      })
       .catch(function (error) {
         console.log("Something went wrong!");
       });
@@ -56,9 +56,9 @@ export const startDetection = (bool) => {
   video.addEventListener('play', () => {
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-      // console.log(detections)
+      api.postEmotions(detections, username)
 
-    }, 100)
+    }, 1000)
   })
 }
 
@@ -67,5 +67,23 @@ export const stopDetection = () => {
   stream.getTracks().forEach(track => {
     track.stop()
   })
+
+}
+
+export const manipulateEmotions = (detections) => {
+  // console.log(detections)
+  const emotions = detections[0].expressions
+
+  if(!emotions) {
+    return { "neutral": 0, "happy": 0, "sad": 0, "angry": 0, "fearful": 0, "disgusted": 0, "surprised": 0}
+
+  }
+  // console.log(emotions);
+
+  return Object.keys(emotions).reduce((returnObj, emotion) => {
+    // console.log(returnObj, emotion)
+    returnObj[emotion] = Math.floor(emotions[emotion] * 100)
+    return returnObj;
+  }, {})
 
 }
