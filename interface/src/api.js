@@ -4,7 +4,7 @@ import * as util from './utils/utils'
 export const postEmotions = (detections, username) => {
   const formattedEmotions = util.manipulateEmotions(detections)
   axios.post(`https://interface-backend-heroku.herokuapp.com/${username}`, formattedEmotions).then((response) => {
-    // console.log(response)
+    console.log(response)
   }).catch(err => {
     console.log(err)
   })

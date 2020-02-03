@@ -72,12 +72,12 @@ export const stopDetection = () => {
 
 export const manipulateEmotions = (detections) => {
   // console.log(detections)
-  const emotions = detections[0].expressions
-
-  if(!emotions) {
+  if(!detections[0]) {
     return { "neutral": 0, "happy": 0, "sad": 0, "angry": 0, "fearful": 0, "disgusted": 0, "surprised": 0}
 
   }
+  const emotions = detections[0].expressions
+
   // console.log(emotions);
 
   return Object.keys(emotions).reduce((returnObj, emotion) => {
