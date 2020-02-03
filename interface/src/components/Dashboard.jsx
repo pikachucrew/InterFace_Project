@@ -1,31 +1,49 @@
-import React, { Component } from 'react'
-import { Link } from '@reach/router'
-import * as faceapi from 'face-api.js'
-import { startDetection, startVideo } from '../utils/utils'
-
-
+import React, { Component } from 'react';
+import { Link } from '@reach/router';
+import * as faceapi from 'face-api.js';
+import fire from '../config';
+import { startDetection, startVideo } from '../utils/utils';
 
 export default class Dashboard extends Component {
-
-  state = { videoPresent: false }
+  state = { videoPresent: false };
 
   render() {
-    const {videoPresent}= this.state
-    console.log(this.state.videoPresent)
+    const { videoPresent } = this.state;
+    const { user } = this.props;
     return (
       <div className="dashboard">
         <h2>Dashboard</h2>
-        <button onClick={() => { startDetection(true) }}>Start detection</button>
-        <button onClick={() => { startDetection(false) }}>Stop detection</button>
-        <Link to="/webcam">
-        <button>
-          View cam
+        <button
+          onClick={() => {
+            startDetection(true);
+          }}
+        >
+          Start detection
         </button>
+        <button
+          onClick={() => {
+            startDetection(false);
+          }}
+        >
+          Stop detection
+        </button>
+        <Link to="/webcam">
+          <button>View cam</button>
         </Link>
-        {this.state.videoPresent && <video autoPlay={true} id='videoElement' width="640" height="480"></video>}
-        {!this.state.videoPresent && <video autoPlay={true} id='videoElement' width="0" height="0"></video>}
+        <button onClick={this.logout}>Log Out</button>
+        {this.state.videoPresent && (
+          <video
+            autoPlay={true}
+            id="videoElement"
+            width="640"
+            height="480"
+          ></video>
+        )}
+        {!this.state.videoPresent && (
+          <video autoPlay={true} id="videoElement" width="0" height="0"></video>
+        )}
       </div>
-    )
+    );
   }
 
   componentDidMount() {
@@ -35,9 +53,11 @@ export default class Dashboard extends Component {
       faceapi.nets.faceLandmark68Net.loadFromUri('/weights'),
       faceapi.nets.faceExpressionNet.loadFromUri('/weights')
     ]).then(() => {
-      console.log('weights loaded')
-    })
+      console.log('weights loaded');
+    });
   }
 
-
+  logout = e => {
+    fire.auth().signOut();
+  };
 }

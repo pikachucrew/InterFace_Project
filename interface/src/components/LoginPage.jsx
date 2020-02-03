@@ -9,16 +9,18 @@ class LoginPage extends Component {
     invalid: false
   };
 
+  handleChange = ({ target }) => {
+    this.setState({
+      [target.name]: target.value
+    });
+  };
+
   login = e => {
     const { email, password } = this.state;
     e.preventDefault();
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState({ invalid: false });
-        navigate('/dashboard');
-      })
       .catch(err => {
         this.setState({ invalid: true });
       });

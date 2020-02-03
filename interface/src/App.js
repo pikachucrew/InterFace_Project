@@ -10,10 +10,11 @@ import { startVideo } from './utils/utils';
 
 export default class App extends Component {
   state = {
-    user: {}
+    user: null
   };
 
   componentDidMount() {
+    console.log(this.state.user);
     this.authListener();
   }
 
@@ -29,14 +30,18 @@ export default class App extends Component {
 
   render() {
     const { user } = this.state;
+    console.log(user);
     return (
       <div className="App">
         <Header className="Header" />
-        <Router className="Router">
-          <LoginPage path="/" user={user} />
-          <Dashboard path="/dashboard" user={user} />
-          <CamPage path="/webcam" startVideo={startVideo} />
-        </Router>
+        {user ? (
+          <Router className="Router">
+            <Dashboard path="/" user={user.email} />
+            <CamPage path="/webcam" startVideo={startVideo} />
+          </Router>
+        ) : (
+          <LoginPage path="/" />
+        )}
       </div>
     );
   }
