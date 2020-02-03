@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../config';
 
+
 class LoginPage extends Component {
   state = {
     email: '',
@@ -63,26 +64,33 @@ class LoginPage extends Component {
     } = this.state;
     return (
       <div>
+        <div class="bg-blue-200 flex flex-row justify-center items-center">
+          {/* <h3 class="text-3xl">Welcome to the Interface Web App!</h3> */}
+          <div class="text-xl">
+          </div>
+        </div>
+        <div class="bg-blue-200">
         {invalid && <p>Invalid Details</p>}
-        <form onSubmit={this.login}>
-          <label>
+        <form onSubmit={this.login} class="flex flex-col items-center bg-white w-auto">
+          <label class="">
             E-mail address:
-            <input
+            <input class="m-4 w-auto"
               type="email"
               name="email"
               value={email}
               onChange={this.handleChange}
             />
           </label>
-          <label>
+          <label class="w-auto">
             Password:
-            <input
+            <input class="m-4"
               type="password"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
           </label>
+
           <button type="submit">Log In</button>
         </form>
         <button onClick={this.newUser}>New User?</button>
@@ -106,7 +114,7 @@ class LoginPage extends Component {
                 onChange={this.handleChange}
               />
             </label>
-            <button type="submit">Sign Up</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24">Sign Up</button>
             {signedUp && <p>Signed up! You may now log in with your details</p>}
           </form>
         )}

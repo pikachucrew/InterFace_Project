@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style.css';
 import fire from './config';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -32,7 +32,7 @@ export default class App extends Component {
     const { user } = this.state;
     console.log(user);
     return (
-      <div className="App">
+      <div className="App" class="h-screen">
         <Header className="Header" />
         {user ? (
           <Router className="Router">
