@@ -50770,3 +50770,59 @@ body {
     z-index: auto;
   }
 }
+
+
+.font-header {
+  font-family: 'Major Mono Display';
+}
+
+.font-h2 {
+  font-family: 'Heebo';
+  text-transform: uppercase;
+}
+
+.font-disc {
+  color: black;
+  font-family: 'heebo';
+  font-weight: 1000;
+}
+
+.button-log {
+  background-color: #83b7bd;
+  border: solid 3px
+}
+
+.button-log:hover {
+  border: solid gray 3px;
+}
+
+.h-2screens {
+  width: 100vw;
+  height: 200vh;
+}
+
+.dashButts {
+  background-color: #ef925b;
+  border: solid 3px #ef925b;
+  padding: 2%;
+  margin-left: 5%;
+  width: 25%;
+}
+
+.dashButts:hover {
+  border: solid gray 3px;
+}
+
+/* bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mr-10 rounded */
+
+.startButt {
+  left: 5%
+}
+
+.stopButt {
+  left: 20%
+}
+
+.viewButt {
+  left: 35%;
+}
