@@ -5,8 +5,10 @@ import { lineManipulator } from "../../utils/dataUtils";
 
 class LineChart extends Component {
   getState = username => {
+    console.log("getState");
     api.getEmotions(username).then(({ data }) => {
       const emotionRefObj = lineManipulator(data);
+      console.log(emotionRefObj);
       this.setState({
         data: {
           labels: ["0:00", "0:10", "0:20", "0:30", "0:40", "0:50", "1:00"],
@@ -165,8 +167,12 @@ class LineChart extends Component {
   };
 
   componentDidMount() {
+    console.log("mounted");
     const { username } = this.props;
-    this.getState(username);
+    setInterval(() => {
+      console.log("interval");
+      this.getState(username);
+    }, 1000);
   }
 
   state = {

@@ -28,7 +28,7 @@ const lineManipulator = arr => {
     };
   }
 
-  return arr.reduce(
+  return arr.reverse().reduce(
     (returnObj, innerArr) => {
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
@@ -68,5 +68,3 @@ const lineManipulator = arr => {
 };
 
 module.exports = { donutManipulator, lineManipulator };
-
-// .slice(0, -2)?

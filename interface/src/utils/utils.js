@@ -67,7 +67,7 @@ export const startDetection = (bool, username) => {
         .withFaceExpressions();
       console.log(detections);
       api.postEmotions(detections, username);
-    }, 10000);
+    }, 1000);
   });
 };
 
@@ -99,8 +99,5 @@ export const manipulateEmotions = detections => {
     // console.log(returnObj, emotion)
     returnObj[emotion] = Math.floor(emotions[emotion] * 100);
     return returnObj;
-  }, {})
-}
-
-
-
+  }, {});
+};
