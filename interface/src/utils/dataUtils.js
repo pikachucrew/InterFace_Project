@@ -14,4 +14,19 @@ const donutManipulator = arr => {
     .map(num => num / arr.length);
 };
 
-module.exports = donutManipulator;
+
+const lineManipulator = arr => {
+
+  // if arr.length=0
+
+  return { neutral: 0, 
+    happy: 0, 
+    sad: 0, 
+    angry: 0, 
+    fearful: 0, 
+    disgusted: 0, 
+    surprised: 0}
+
+}
+
+module.exports = {donutManipulator, lineManipulator};

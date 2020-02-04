@@ -1,11 +1,11 @@
 import * as api from "../api";
-import donutManipulator from "../utils/dataUtils";
+import {donutManipulator} from "../utils/dataUtils";
 
 import React, { Component } from "react";
 // import BarChart from './Charts/BarChart'
 import Donut from "./Charts/Donut";
-// import LineChart from './Charts/LineChart'
-// import DynamicLine from './Charts/DynamicLine'
+import LineChart from './Charts/LineChart'
+import DynamicLine from './Charts/DynamicLine'
 
 export default class DataVisualisation extends Component {
   state = {
@@ -20,9 +20,9 @@ export default class DataVisualisation extends Component {
     return (
       <div>
         {/* <BarChart /> */}
-        <Donut data={data} />
-        {/* <LineChart />
-        <DynamicLine /> */}
+        {/* <Donut data={data} /> */}
+        <LineChart />
+        <DynamicLine />
       </div>
     );
   }
