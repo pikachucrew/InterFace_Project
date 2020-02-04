@@ -1,46 +1,72 @@
-import React, { Component } from 'react'
-import { Link } from '@reach/router'
-import * as faceapi from 'face-api.js'
-import { startDetection, startVideo } from '../utils/utils'
-import DataVisualisation from './DataVisualisation'
-
-
+import React, { Component } from "react";
+import { Link } from "@reach/router";
+import * as faceapi from "face-api.js";
+import fire from "../config";
+import { startDetection, startVideo } from "../utils/utils";
 
 export default class Dashboard extends Component {
-
-  state = { videoPresent: false, username: "bigcal" }
+  state = { videoPresent: false };
 
   render() {
-    const {videoPresent, username}= this.state
-    console.log(username);
-    console.log(this.state.videoPresent)
+    const { videoPresent } = this.state;
+    const { user } = this.props;
     return (
       <div className="dashboard">
         <h2>Dashboard</h2>
-        <button onClick={() => { startDetection(true, username) }}>Start detection</button>
-        <button onClick={() => { startDetection(false, username) }}>Stop detection</button>
-        <Link to="/webcam">
-        <button>
-          View cam
+        <button
+          onClick={() => {
+            startDetection(true, user);
+          }}
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+        >
+          Start detection
         </button>
+        <button
+          onClick={() => {
+            startDetection(false, user);
+          }}
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+        >
+          Stop detection
+        </button>
+        <Link to="/webcam">
+          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
+            View cam
+          </button>
         </Link>
-        {this.state.videoPresent && <video autoPlay={true} id='videoElement' width="640" height="480"></video>}
-        {!this.state.videoPresent && <video autoPlay={true} id='videoElement' width="0" height="0"></video>}
-        <DataVisualisation />
+        <button
+          onClick={this.logout}
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+        >
+          Log Out
+        </button>
+        {this.state.videoPresent && (
+          <video
+            autoPlay={true}
+            id="videoElement"
+            width="640"
+            height="480"
+          ></video>
+        )}
+        {!this.state.videoPresent && (
+          <video autoPlay={true} id="videoElement" width="0" height="0"></video>
+        )}
       </div>
-    )
+    );
   }
 
   componentDidMount() {
     Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('/weights'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('/weights'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('/weights'),
-      faceapi.nets.faceExpressionNet.loadFromUri('/weights')
+      faceapi.nets.tinyFaceDetector.loadFromUri("/weights"),
+      faceapi.nets.faceRecognitionNet.loadFromUri("/weights"),
+      faceapi.nets.faceLandmark68Net.loadFromUri("/weights"),
+      faceapi.nets.faceExpressionNet.loadFromUri("/weights")
     ]).then(() => {
-      // console.log('weights loaded')
-    })
+      console.log("weights loaded");
+    });
   }
 
-
+  logout = e => {
+    fire.auth().signOut();
+  };
 }
