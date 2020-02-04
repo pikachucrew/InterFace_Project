@@ -5,7 +5,9 @@ import fire from "../config";
 import * as utils from "../utils/utils";
 
 export default class Dashboard extends Component {
-  state = { videoPresent: false };
+  state = {
+    videoPresent: false,
+  };
 
   render() {
     const { videoPresent } = this.state;

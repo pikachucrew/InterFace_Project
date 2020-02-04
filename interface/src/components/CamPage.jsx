@@ -13,7 +13,6 @@ export default class CamPage extends Component {
           <button
             onClick={() => {
               utils.startVideo(false);
-              
             }}
           >
             Return
