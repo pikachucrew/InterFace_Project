@@ -3,11 +3,10 @@ import { Doughnut } from "react-chartjs-2";
 // import { defaults } from "react-chartjs-2";
 
 function Donut(props) {
-  console.log(props)
+  console.log(props.data)
 
-let info = props.data.data
-let emotionInfo = info[10].slice(1,8)
-console.log(emotionInfo)
+let info = props.data
+// console.log(emotionInfo)
 
   let data = {
     labels: [
@@ -22,7 +21,7 @@ console.log(emotionInfo)
     // labels: ["Negative", "Neutral", "Happy"],
     datasets: [
       {
-        data: emotionInfo,
+        data: info,
         backgroundColor: [
           "green",
           "yellow",

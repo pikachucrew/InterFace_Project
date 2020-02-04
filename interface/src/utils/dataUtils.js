@@ -1,7 +1,7 @@
 const donutManipulator = arr => {
   if (arr.length === 0) return [0, 0, 0, 0, 0, 0, 0];
 
-  return arr
+  return arr.slice(0, -2)
     .reduce(
       (returnArray, innerArray) => {
         innerArray.forEach((num, i) => {

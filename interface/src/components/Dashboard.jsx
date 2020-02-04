@@ -3,6 +3,8 @@ import { Link } from "@reach/router";
 import * as faceapi from "face-api.js";
 import fire from "../config";
 import { startDetection, startVideo } from "../utils/utils";
+import Donut from "./Charts/Donut";
+import DataVisualisation from "./DataVisualisation";
 
 export default class Dashboard extends Component {
   state = { videoPresent: false };
@@ -51,6 +53,7 @@ export default class Dashboard extends Component {
         {!this.state.videoPresent && (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
         )}
+        <DataVisualisation user={user}/>
       </div>
     );
   }
