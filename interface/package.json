@@ -22,8 +22,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+<<<<<<< HEAD
     "build": "react-scripts build",
     "test-utils": "mocha src/spec/utils.spec.js",
+=======
+    "build": "npm run build:css && react-scripts build",
+>>>>>>> 910e97d3eeb8c633003fe1dfc3a845591224a5fb
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "tailwind build src/app.css -o  src/style.css"
@@ -42,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "postcss-cli": "^7.1.0"
   }
 }

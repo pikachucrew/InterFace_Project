@@ -4,6 +4,7 @@ import * as api from "../../api";
 import { lineManipulator, getTime } from "../../utils/dataUtils";
 
 class LineChart extends Component {
+  // eh???
   getState = username => {
     const time = getTime();
     api.getEmotions(username, time).then(({ data }) => {
