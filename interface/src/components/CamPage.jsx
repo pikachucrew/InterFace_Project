@@ -7,20 +7,20 @@ export default class CamPage extends Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <h2>View Camera</h2>
-        <div id="container">
-          <video autoPlay={true} id="videoElement" width="640" height="480">
-          </video>
-          <canvas id="canvasElement"></canvas>
-        </div>
-        <Link to="/dashboard">
+      <div class="w-screen h-screen">
+        <h2>Webcam</h2>
+        <Link to="/">
           <button onClick={() => {
             startVideo(false)
           }}>
             Return
           </button>
         </Link>
+        <div id="container" class="w-screen h-screen flex flex-col justify-center items-center">
+          <video autoPlay={true} id="videoElement" width="640" height="480" class="absolute">
+          </video>
+          <canvas id="canvasElement" class="absolute"></canvas>
+        </div>
       </div>
     )
   }

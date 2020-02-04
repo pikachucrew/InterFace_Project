@@ -35,7 +35,7 @@ export default class App extends Component {
       <div className="App" class="h-screen">
         <Header className="Header" />
         {user ? (
-          <Router className="Router">
+          <Router className="Router" class="w-screen h-screen">
             <Dashboard path="/" user={user.email} />
             <CamPage path="/webcam" startVideo={startVideo} />
           </Router>

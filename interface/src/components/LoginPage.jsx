@@ -119,6 +119,7 @@ class LoginPage extends Component {
           </form>
         )}
       </div>
+      </div>
     );
   }
 }
