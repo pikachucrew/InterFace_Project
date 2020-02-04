@@ -21,9 +21,9 @@ export default class DataVisualisation extends Component {
     return (
       <div>
         {/* <BarChart /> */}
-        {/* <Donut data={data} /> */}
+        <Donut data={data} />
         <LineChart username={user} />
-        <DynamicLine />
+        {/* <DynamicLine /> */}
       </div>
     );
   }

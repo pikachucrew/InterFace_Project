@@ -18,7 +18,6 @@ let info = props.data
       "disgusted 🤢",
       "surprised 😮"
     ],
-    // labels: ["Negative", "Neutral", "Happy"],
     datasets: [
       {
         data: info,
@@ -32,9 +31,13 @@ let info = props.data
           "orange"
         ],
         hoverBackgroundColor: [
+          "green",
+          "yellow",
           "rgba(133, 190, 212)",
-          "rgba(112, 226, 108, 0.89)",
-          "yellow"
+          "red",
+          "black",
+          "rgba(48, 68, 36, 0.733)",
+          "orange"
         ]
       }
     ]
