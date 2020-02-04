@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as faceapi from "face-api.js";
 import { Link } from "@reach/router";
-import { startVideo } from "../utils/utils";
+import * as utils from "../utils/utils";
 
 export default class CamPage extends Component {
   render() {
@@ -12,7 +12,8 @@ export default class CamPage extends Component {
         <Link to="/">
           <button
             onClick={() => {
-              startVideo(false);
+              utils.startVideo(false);
+              
             }}
           >
             Return
@@ -41,6 +42,6 @@ export default class CamPage extends Component {
       faceapi.nets.faceRecognitionNet.loadFromUri("/weights"),
       faceapi.nets.faceLandmark68Net.loadFromUri("/weights"),
       faceapi.nets.faceExpressionNet.loadFromUri("/weights")
-    ]).then(startVideo(true));
+    ]).then(utils.startVideo(true));
   }
 }
