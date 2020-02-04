@@ -99,5 +99,8 @@ export const manipulateEmotions = detections => {
     // console.log(returnObj, emotion)
     returnObj[emotion] = Math.floor(emotions[emotion] * 100);
     return returnObj;
-  }, {});
-};
+  }, {})
+}
+
+
+
