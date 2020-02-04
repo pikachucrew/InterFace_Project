@@ -7,19 +7,19 @@ class LineChart extends Component {
   getState = username => {
     const time = getTime();
     api.getEmotions(username, time).then(({ data }) => {
-      console.log(data);
+      console.log(data, "line data");
       const emotionRefObj = lineManipulator(data);
 
       this.setState({
         data: {
           labels: [
-            "-6 sec",
-            "-5 sec",
-            "-4 sec",
-            "-3 sec",
-            "-2 sec",
+            "now",
             "-1 sec",
-            "now"
+            "-2 sec",
+            "-3 sec",
+            "-4 sec",
+            "-5 sec",
+            "-6 sec"
           ],
           datasets: [
             {
