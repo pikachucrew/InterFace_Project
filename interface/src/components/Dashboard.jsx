@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as faceapi from "face-api.js";
 import fire from "../config";
-import { startDetection, startVideo } from "../utils/utils";
+import * as utils from "../utils/utils";
 
 export default class Dashboard extends Component {
   state = { videoPresent: false };
@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
         <h2>Dashboard</h2>
         <button
           onClick={() => {
-            startDetection(true, user);
+            utils.startDetection(true, user);
           }}
           className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
         >
@@ -23,7 +23,7 @@ export default class Dashboard extends Component {
         </button>
         <button
           onClick={() => {
-            startDetection(false, user);
+            utils.startDetection(false, user);
           }}
           className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
         >
