@@ -30,27 +30,27 @@ const lineManipulator = arr => {
 
   return arr.reduce(
     (returnObj, innerArr) => {
-      innerArr.forEach((num, i) => {
+      innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
-          returnObj.neutral.push(num)
+          returnObj.neutral.push(num);
         }
         if (i === 1) {
-          returnObj.happy.push(num)
+          returnObj.happy.push(num);
         }
         if (i === 2) {
-          returnObj.sad.push(num)
+          returnObj.sad.push(num);
         }
         if (i === 3) {
-          returnObj.angry.push(num)
+          returnObj.angry.push(num);
         }
         if (i === 4) {
-          returnObj.fearful.push(num)
+          returnObj.fearful.push(num);
         }
         if (i === 5) {
-          returnObj.disgusted.push(num)
+          returnObj.disgusted.push(num);
         }
         if (i === 6) {
-          returnObj.surprised.push(num)
+          returnObj.surprised.push(num);
         }
       });
       return returnObj;
