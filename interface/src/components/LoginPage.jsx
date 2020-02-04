@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import fire from '../config';
-
+import React, { Component } from "react";
+import fire from "../config";
 
 class LoginPage extends Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     invalid: false,
     newUser: false,
     signedUp: false,
-    newEmail: '',
-    newPassword: ''
+    newEmail: "",
+    newPassword: ""
   };
 
   handleChange = ({ target }) => {
@@ -64,61 +63,72 @@ class LoginPage extends Component {
     } = this.state;
     return (
       <div>
-        <div class="bg-blue-200 flex flex-row justify-center items-center">
-          {/* <h3 class="text-3xl">Welcome to the Interface Web App!</h3> */}
-          <div class="text-xl">
-          </div>
+        <div className="bg-blue-200 flex flex-row justify-center items-center">
+          {/* <h3 className="text-3xl">Welcome to the Interface Web App!</h3> */}
+          <div className="text-xl"></div>
         </div>
-        <div class="bg-blue-200">
-        {invalid && <p>Invalid Details</p>}
-        <form onSubmit={this.login} class="flex flex-col items-center bg-white w-auto">
-          <label class="">
-            E-mail address:
-            <input class="m-4 w-auto"
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label class="w-auto">
-            Password:
-            <input class="m-4"
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </label>
-
-          <button type="submit">Log In</button>
-        </form>
-        <button onClick={this.newUser}>New User?</button>
-        {newUser && (
-          <form onSubmit={this.signup}>
-            <label>
+        <div className="bg-blue-200">
+          {invalid && <p>Invalid Details</p>}
+          <form
+            onSubmit={this.login}
+            className="flex flex-col items-center bg-white w-auto"
+          >
+            <label className="">
               E-mail address:
               <input
+                className="m-4 w-auto"
                 type="email"
-                name="newEmail"
-                value={newEmail}
+                name="email"
+                value={email}
                 onChange={this.handleChange}
               />
             </label>
-            <label>
+            <label className="w-auto">
               Password:
               <input
+                className="m-4"
                 type="password"
-                name="newPassword"
-                value={newPassword}
+                name="password"
+                value={password}
                 onChange={this.handleChange}
               />
             </label>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24">Sign Up</button>
-            {signedUp && <p>Signed up! You may now log in with your details</p>}
+
+            <button type="submit">Log In</button>
           </form>
-        )}
-      </div>
+          <button onClick={this.newUser}>New User?</button>
+          {newUser && (
+            <form onSubmit={this.signup}>
+              <label>
+                E-mail address:
+                <input
+                  type="email"
+                  name="newEmail"
+                  value={newEmail}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Password:
+                <input
+                  type="password"
+                  name="newPassword"
+                  value={newPassword}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded w-24"
+              >
+                Sign Up
+              </button>
+              {signedUp && (
+                <p>Signed up! You may now log in with your details</p>
+              )}
+            </form>
+          )}
+        </div>
       </div>
     );
   }
