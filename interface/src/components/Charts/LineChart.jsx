@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import * as api from "../../api";
-import { lineManipulator } from "../../utils/dataUtils";
+import { lineManipulator, getTime } from "../../utils/dataUtils";
 
 class LineChart extends Component {
   getState = username => {
-    console.log("getState");
-    api.getEmotions(username).then(({ data }) => {
+    const time = getTime();
+    api.getEmotions(username, time).then(({ data }) => {
+      console.log(data);
       const emotionRefObj = lineManipulator(data);
-      console.log(emotionRefObj);
+
       this.setState({
         data: {
-          labels: ["0:00", "0:10", "0:20", "0:30", "0:40", "0:50", "1:00"],
+          labels: [
+            "-6 sec",
+            "-5 sec",
+            "-4 sec",
+            "-3 sec",
+            "-2 sec",
+            "-1 sec",
+            "now"
+          ],
           datasets: [
             {
               label: "neutral 😐",

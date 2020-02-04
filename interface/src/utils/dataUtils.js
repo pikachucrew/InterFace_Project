@@ -28,7 +28,7 @@ const lineManipulator = arr => {
     };
   }
 
-  return arr.reverse().reduce(
+  return arr.reduce(
     (returnObj, innerArr) => {
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
@@ -67,4 +67,27 @@ const lineManipulator = arr => {
   );
 };
 
-module.exports = { donutManipulator, lineManipulator };
+const checkTime = i => {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+};
+
+const getTime = () => {
+  const date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  const seconds = checkTime(date.getSeconds());
+
+  if (minutes === 0) {
+    hours--;
+    minutes = 59;
+  } else {
+    minutes--;
+  }
+
+  return hours + ":" + minutes + ":" + seconds;
+};
+
+module.exports = { donutManipulator, lineManipulator, getTime };
