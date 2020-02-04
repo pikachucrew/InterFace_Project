@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard';
 import CamPage from './components/CamPage';
 import { Router } from '@reach/router';
 import LoginPage from './components/LoginPage';
-import { startVideo } from './utils/utils';
+import * as utils from './utils/utils';
 
 export default class App extends Component {
   state = {
@@ -36,8 +36,8 @@ export default class App extends Component {
         <Header className="Header" />
         {user ? (
           <Router className="Router" class="w-screen h-screen">
-            <Dashboard path="/" user={user.email} />
-            <CamPage path="/webcam" startVideo={startVideo} />
+            <Dashboard path="/" user={user.email}/>
+            <CamPage path="/webcam" startVideo={utils.startVideo} user={user.email}/>
           </Router>
         ) : (
           <LoginPage path="/" />
