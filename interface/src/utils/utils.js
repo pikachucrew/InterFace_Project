@@ -2,7 +2,7 @@ import * as faceapi from "face-api.js";
 import * as api from "../api";
 
 export const startVideo = (bool, user) => {
-  console.log('startVideo runs')
+  console.log('starting startVideo')
   const video = document.querySelector("#videoElement");
   const canvas = document.querySelector("#canvasElement");
   if (navigator.mediaDevices.getUserMedia) {
@@ -39,6 +39,7 @@ export const startVideo = (bool, user) => {
 };
 
 export const startDetection = (bool, username) => {
+  console.log('starting detection')
   const video = document.querySelector("#videoElement");
 
   if (navigator.mediaDevices.getUserMedia) {
@@ -110,9 +111,12 @@ export const refreshPage = () => {
 export const stopStream = () => {
   const video = document.querySelector("#videoElement");
   const stream = video.srcObject;
-  let tracks = stream.getTracks()
 
-  tracks.forEach((track) => {
-    track.stop()
-  })
+  if(stream) {
+    let tracks = stream.getTracks()
+    tracks.forEach((track) => {
+      track.stop()
+    })
+  }
+  
 }

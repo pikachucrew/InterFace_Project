@@ -62,16 +62,16 @@ class LoginPage extends Component {
       signedUp
     } = this.state;
     return (
-      <div>
+      <div className="flex flex-col justify-center items-center w-screen">
         <div className="bg-blue-200 flex flex-row justify-center items-center">
           {/* <h3 className="text-3xl">Welcome to the Interface Web App!</h3> */}
           <div className="text-xl"></div>
         </div>
-        <div className="bg-blue-200">
+        <div className="bg-white w-3/5 p-20 m-20 shadow-2xl">
           {invalid && <p>Invalid Details</p>}
           <form
             onSubmit={this.login}
-            className="flex flex-col items-center bg-white w-auto"
+            className="flex flex-col items-center"
           >
             <label className="">
               E-mail address:
