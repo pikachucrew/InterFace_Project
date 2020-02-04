@@ -12,23 +12,18 @@
     "chai": "^4.2.0",
     "chart.js": "^2.9.3",
     "face-api.js": "^0.22.0",
-    "mocha": "^7.0.1",
     "firebase": "^7.8.0",
+    "mocha": "^7.0.1",
     "react": "^16.12.0",
     "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.1",
+    "react-scripts": "3.2.0",
     "tailwindcss": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-<<<<<<< HEAD
-    "build": "react-scripts build",
-    "test-utils": "mocha src/spec/utils.spec.js",
-=======
     "build": "npm run build:css && react-scripts build",
->>>>>>> 910e97d3eeb8c633003fe1dfc3a845591224a5fb
-    "test": "react-scripts test",
+    "test-utils": "mocha src/spec/utils.spec.js",
     "eject": "react-scripts eject",
     "build:css": "tailwind build src/app.css -o  src/style.css"
   },
