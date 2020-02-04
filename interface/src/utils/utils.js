@@ -101,3 +101,7 @@ export const manipulateEmotions = detections => {
     return returnObj;
   }, {});
 };
+
+export const refreshPage = () => {
+  window.location.reload(true);
+}
