@@ -28,9 +28,6 @@ def handle_request(email):
     #define model functions....
     def get_rows(user_hash):
 
-        #all columns but email
-        desired_columns = 'neutral, happy, sad, angry, fearful, disgusted, surprised, date, time'
-
         start_time = request.args.get('from')
         end_time = request.args.get('to')
 
