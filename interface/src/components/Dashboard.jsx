@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as faceapi from "face-api.js";
 import fire from "../config";
-<<<<<<< HEAD
-import { startDetection, startVideo } from "../utils/utils";
-import Donut from "./Charts/Donut";
 import DataVisualisation from "./DataVisualisation";
-=======
 import * as utils from "../utils/utils";
->>>>>>> 910e97d3eeb8c633003fe1dfc3a845591224a5fb
 
 export default class Dashboard extends Component {
   state = {
@@ -59,11 +54,7 @@ export default class Dashboard extends Component {
         {!this.state.videoPresent && (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
         )}
-<<<<<<< HEAD
         <DataVisualisation user={user}/>
-=======
-        
->>>>>>> 910e97d3eeb8c633003fe1dfc3a845591224a5fb
       </div>
     );
   }
