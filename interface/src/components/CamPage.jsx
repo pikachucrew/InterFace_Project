@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as faceapi from "face-api.js";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import * as utils from "../utils/utils";
 
 export default class CamPage extends Component {
@@ -11,8 +11,9 @@ export default class CamPage extends Component {
         <h2>Webcam</h2>
         <Link to="/">
           <button
-            onClick={() => {
-              utils.startVideo(false);
+            onClick={async () => {
+              await utils.stopStream()
+              navigate('/')
             }}
           >
             Return

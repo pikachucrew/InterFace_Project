@@ -36,8 +36,8 @@ export default class App extends Component {
         <Header className="Header" />
         {user ? (
           <Router className="Router" class="w-screen h-screen">
-            <Dashboard path="/" user={user.email} />
-            <CamPage path="/webcam" startVideo={utils.startVideo} />
+            <Dashboard path="/" user={user.email}/>
+            <CamPage path="/webcam" startVideo={utils.startVideo} user={user.email}/>
           </Router>
         ) : (
           <LoginPage path="/" />
