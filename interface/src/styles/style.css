@@ -50880,6 +50880,13 @@ body {
   padding: 1%;
 }
 
+.lfChart{
+  width: 98%;
+  margin: 1%;
+  background-color: white;
+  padding: 1%;
+}
+
 .linkHolster{
   width: 31%;
   margin: 1%;
@@ -50896,4 +50903,8 @@ body {
 
 .chartTitle{
   font-family: "Quicksand", sans-serif;
+}
+
+.buttpad{
+  margin: 0.5%;
 }

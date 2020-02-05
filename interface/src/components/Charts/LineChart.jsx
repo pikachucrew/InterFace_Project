@@ -32,7 +32,7 @@ class LineChart extends Component {
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor:"#B5FD9D",
+              pointBorderColor: "#B5FD9D",
               pointBackgroundColor: "#FF9494",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
@@ -110,8 +110,8 @@ class LineChart extends Component {
               label: "Fearful",
               fill: false,
               lineTension: 0.1,
-              backgroundColor:"#B5FD9D",
-              borderColor:"#B5FD9D",
+              backgroundColor: "#B5FD9D",
+              borderColor: "#B5FD9D",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
@@ -218,15 +218,23 @@ class LineChart extends Component {
             Your Day
           </h3>
           <Line data={data} />
-          {Object.keys(buttonRef).map(key => {
-            return (
-              <button
-                onClick={this.selectTime}
-                name={key}
-              >{`${key} - ${buttonRef[key]}`}</button>
-            );
-          })}
-          <button onClick={this.selectTime}>All Day</button>
+          <div className="w-full flex flex-wrap justify-around mt-10">
+            {Object.keys(buttonRef).map(key => {
+              return (
+                <button
+                  className="bg-blue-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded buttpad flex-grow-0"
+                  onClick={this.selectTime}
+                  name={key}
+                >{`${key} - ${buttonRef[key]}`}</button>
+              );
+            })}
+            <button
+              onClick={this.selectTime}
+              className="bg-blue-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded buttpad flex-grow "
+            >
+              All Day
+            </button>
+          </div>
         </section>
         <Donut username={username} time={time} refObj={buttonRef} />
         <div className="linkHolster shadow-2xl rounded-lg">
