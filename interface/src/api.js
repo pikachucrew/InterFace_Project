@@ -13,9 +13,15 @@ export const postEmotions = (detections, username) => {
     });
 };
 
-export const getEmotions = async username => {
-  const emotions = await axios.get(
-    `https://interface-backend-heroku.herokuapp.com/${username}`
-  );
+export const getEmotions = async (username, from, to) => {
+  const baseUrl = `https://interface-backend-heroku.herokuapp.com/${username}`;
+  const emotions = await axios.get(baseUrl, {
+    params: {
+      from,
+      to
+    }
+  }).catch(err => {
+    console.log(err)
+  })
   return emotions;
 };

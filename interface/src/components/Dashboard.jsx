@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as faceapi from "face-api.js";
 import fire from "../config";
+import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
 
 export default class Dashboard extends Component {
@@ -13,12 +14,12 @@ export default class Dashboard extends Component {
     const { user } = this.props;
     return (
       <div className="dashboard">
-        <h2>Dashboard</h2>
+        <div className="flex flex-row w-screen justify-center fixed">
         <button
           onClick={() => {
             utils.startDetection(true, user);
           }}
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+          className="dashButts rounded"
         >
           Start detection
         </button>
@@ -26,21 +27,22 @@ export default class Dashboard extends Component {
           onClick={() => {
             utils.stopStream()
           }}
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+            className="dashButts rounded "
         >
           Stop detection
         </button>
-        <Link to="/webcam">
-          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
+          <Link to="/webcam" className="dashButts rounded ">
+            <button>
             View cam
           </button>
         </Link>
         <button
           onClick={this.logout}
-          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+            className="dashButts rounded "
         >
           Log Out
         </button>
+        </div>
         {this.state.videoPresent && (
           <video
             autoPlay={true}
@@ -52,6 +54,7 @@ export default class Dashboard extends Component {
         {!this.state.videoPresent && (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
         )}
+        <DataVisualisation user={user}/>
       </div>
     );
   }

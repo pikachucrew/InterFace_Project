@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import Donut from './Donut';
 import { Line } from 'react-chartjs-2';
 import * as api from '../../api';
-import { lineManipulator } from '../../utils/dataUtils';
+import { liveLineManipulator, getTime } from '../../utils/dataUtils';
 
-class LineChart extends Component {
+class LiveFeed extends Component {
   getState = username => {
-    api.getEmotions(username, '09:00:00').then(({ data }) => {
-      const emotionRefObj = lineManipulator(data);
+    const time = getTime();
+    api.getEmotions(username, getTime()).then((response) => {
+      const emotionRefObj = liveLineManipulator(response.data);
       this.setState({
         data: {
           labels: [
-            '09:00',
-            '10:00',
-            '11:00',
-            '12:00',
-            '13:00',
-            '14:00',
-            '15:00',
-            '16:00',
-            '17:00'
+            'now',
+            '-1 sec',
+            '-2 sec',
+            '-3 sec',
+            '-4 sec',
+            '-5 sec',
+            '-6 sec'
           ],
           datasets: [
             {
@@ -175,54 +173,28 @@ class LineChart extends Component {
     });
   };
 
-  selectTime = ({ target }) => {
-    this.setState({ time: target.name });
-  };
-
   componentDidMount() {
     const { username } = this.props;
-    this.getState(username);
+    setInterval(() => {
+      this.getState(username);
+    }, 1000);
   }
 
   state = {
-    data: {},
-    buttonRef: {
-      '09:00': '10:00',
-      '10:00': '11:00',
-      '11:00': '12:00',
-      '12:00': '13:00',
-      '13:00': '14:00',
-      '14:00': '15:00',
-      '15:00': '16:00',
-      '16:00': '17:00'
-    },
-    time: undefined
+    data: {}
   };
 
   render() {
-    const { data, buttonRef, time } = this.state;
-    const { username } = this.props;
+    const { data } = this.state;
     return (
-      <div>
-        <section>
-          <h3 className="LineHead">
-            <u>Your Day:</u>
-          </h3>
-          <Line data={data} />
-        </section>
-        <button onClick={this.selectTime}>All Day</button>
-        {Object.keys(buttonRef).map(key => {
-          return (
-            <button
-              onClick={this.selectTime}
-              name={key}
-            >{`${key} - ${buttonRef[key]}`}</button>
-          );
-        })}
-        <Donut username={username} time={time} refObj={buttonRef} />
-      </div>
+      <section>
+        <h3 className="LineHead">
+          <u>Live Feed</u>
+        </h3>
+        <Line data={data} />
+      </section>
     );
   }
 }
 
-export default LineChart;
+export default LiveFeed;
