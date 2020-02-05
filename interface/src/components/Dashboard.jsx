@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
     const { user } = this.props;
     return (
       <div className="dashboard">
-        <div className="flex flex-row w-screen justify-center fixed">
+        <div className="slide-in font-header buttsContainer flex flex-row w-screen justify-center gains">
         <button
           onClick={() => {
             utils.startDetection(true, user);

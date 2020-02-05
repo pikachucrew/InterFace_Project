@@ -44,7 +44,7 @@ let info = props.data
   };
 
   return (
-    <section>
+    <section className="dlCharts">
       <h3 className="DoughnutHead">
         <u>Summary Chart</u>
       </h3>

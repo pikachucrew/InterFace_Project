@@ -35,7 +35,7 @@ function BarChart(props) {
   };
 
   return (
-    <section>
+    <section >
       <h3 className="BarHead">
         <u>Example Bar Chart</u>
       </h3>

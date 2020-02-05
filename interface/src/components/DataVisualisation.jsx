@@ -19,10 +19,16 @@ export default class DataVisualisation extends Component {
     // console.log(this.state)
     if (isLoading === true) return <p>Loading...</p>;
     return (
-      <div>
+      <div className="chartHolster flex flex-column w-screen ">
+      <div className="w-screen flex flex-row flex-wrap">
         {/* <BarChart /> */}
-        <Donut data={data} />
-        <LineChart username={user} />
+        <Donut data={data} className="dlCharts shadow-2xl" />
+        <LineChart username={user} className = "dlCharts shadow-2xl" />
+        <div className = "linkHolster shadow-2xl">
+          <p>Link to Live Emotions</p>
+        </div>
+        <div className="hintHolster shadow-2xl">Helpful hint!</div>
+      </div>
         {/* <DynamicLine /> */}
       </div>
     );

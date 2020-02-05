@@ -192,7 +192,7 @@ class LineChart extends Component {
   render() {
     const { data } = this.state;
     return (
-      <section>
+      <section className="dlCharts">
         <h3 className="LineHead">
           <u>Example Line Chart</u>
         </h3>
