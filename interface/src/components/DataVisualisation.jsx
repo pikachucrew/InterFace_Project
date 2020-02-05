@@ -5,7 +5,7 @@ import React from 'react';
 const DataVisualisation = ({ user }) => {
   return (
     <div>
-      {/* <LiveFeed username={user} /> */}
+      <LiveFeed username={user} />
       <LineChart username={user} />
     </div>
   );

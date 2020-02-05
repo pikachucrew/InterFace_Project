@@ -219,7 +219,7 @@ class LineChart extends Component {
             >{`${key} - ${buttonRef[key]}`}</button>
           );
         })}
-        <Donut username={username} time={time} data={data} refObj={buttonRef} />
+        <Donut username={username} time={time} refObj={buttonRef} />
       </div>
     );
   }
