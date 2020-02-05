@@ -2,27 +2,30 @@ import React, { Component } from "react";
 import * as faceapi from "face-api.js";
 import { Link, navigate } from "@reach/router";
 import * as utils from "../utils/utils";
+import comp from '../assets/computer.png'
 
 export default class CamPage extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="w-screen h-screen">
-        <h2>Webcam</h2>
+      <div className="w-screen h-screen camPage flex flex-column ">
+        <div className="returnButt">
         <Link to="/">
-          <button
+          <button 
             onClick={async () => {
               await utils.stopStream()
               navigate('/')
             }}
           >
-            Return
+           ⏎
           </button>
         </Link>
+        </div>
         <div
           id="container"
           className="w-screen h-screen flex flex-col justify-center items-center"
         >
+          <img src={comp} alt="" srcset="" className="absolute mt-40 z-10"/>
           <video
             autoPlay={true}
             id="videoElement"
