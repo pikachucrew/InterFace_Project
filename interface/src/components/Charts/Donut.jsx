@@ -9,7 +9,9 @@ class Donut extends Component {
   };
 
   componentDidMount() {
+    console.log('hello');
     const { data } = this.props;
+    console.log(data, '<---- data');
     this.setState({
       data: {
         labels: [
@@ -51,6 +53,7 @@ class Donut extends Component {
   componentDidUpdate(prevProps) {
     const { time, username, refObj } = this.props;
     if (time !== prevProps.time) {
+      console.log('shouldnt be in here');
       api.getEmotions(username, time, refObj[time]).then(({ data }) => {
         this.setState({
           data: {
@@ -94,6 +97,7 @@ class Donut extends Component {
 
   render() {
     const { data } = this.state;
+    console.log(data, 'rendering');
     return (
       <section>
         <h3 className="DoughnutHead">
