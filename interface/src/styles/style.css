@@ -11,6 +11,7 @@
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  scroll-behavior: smooth;
 }
 
 /* Sections
@@ -50861,6 +50862,17 @@ body {
   padding-top: 0.5%;
 }
 
+.liveChartHolster{
+  top: 120%;
+  position: absolute;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  width: 97%;
+  height: 77%;
+  padding-top: 0.5%;
+  background-color: white;
+}
+
 .dlCharts{
   width: 48%;
   margin: 1%;
@@ -50880,4 +50892,8 @@ body {
   margin: 1%;
   padding: 1%;
   background-color: white;
+}
+
+.chartTitle{
+  font-family: "Quicksand", sans-serif;
 }

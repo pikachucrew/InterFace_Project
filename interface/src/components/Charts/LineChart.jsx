@@ -1,103 +1,102 @@
 import React, { Component } from "react";
+import Donut from "./Donut";
 import { Line } from "react-chartjs-2";
 import * as api from "../../api";
-import { lineManipulator, getTime } from "../../utils/dataUtils";
+import { lineManipulator } from "../../utils/dataUtils";
 
 class LineChart extends Component {
-  // eh???
   getState = username => {
-    const time = getTime();
-    api.getEmotions(username, time).then(({ data }) => {
-      console.log(data, "line data");
+    api.getEmotions(username, "09:00:00").then(({ data }) => {
       const emotionRefObj = lineManipulator(data);
-
       this.setState({
         data: {
           labels: [
-            "now",
-            "-1 sec",
-            "-2 sec",
-            "-3 sec",
-            "-4 sec",
-            "-5 sec",
-            "-6 sec"
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00"
           ],
           datasets: [
             {
-              label: "neutral 😐",
+              label: "Neutral",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "green",
-              borderColor: "green",
+              backgroundColor: "#FF9494",
+              borderColor: "#FF9494",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor: "black",
-              pointBackgroundColor: "green",
+              pointBorderColor:"#B5FD9D",
+              pointBackgroundColor: "#FF9494",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: "green",
-              pointHoverBorderColor: "green",
+              pointHoverBackgroundColor: "#FF9494",
+              pointHoverBorderColor: "#FF9494",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.neutral
             },
             {
-              label: "happy 😀",
+              label: "Happy",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "yellow",
-              borderColor: "yellow",
+              backgroundColor: "#C8B1FE",
+              borderColor: "#C8B1FE",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
               pointBorderColor: "rgba(75,192,192,1)",
-              pointBackgroundColor: "yellow",
+              pointBackgroundColor: "#C8B1FE",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: "yellow",
-              pointHoverBorderColor: "yellow",
+              pointHoverBackgroundColor: "#C8B1FE",
+              pointHoverBorderColor: "#C8B1FE",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.happy
             },
             {
-              label: "sad 🙁",
+              label: "Sad ",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "rgba(133, 190, 212)",
-              borderColor: "rgba(133, 190, 212)",
+              backgroundColor: "#4BD56D",
+              borderColor: "#4BD56D",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
               pointBorderColor: "rgba(75,192,192,1)",
-              pointBackgroundColor: "rgba(133, 190, 212)",
+              pointBackgroundColor: "#4BD56D",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(133, 190, 212)",
-              pointHoverBorderColor: "rgba(133, 190, 212)",
+              pointHoverBackgroundColor: "#4BD56D",
+              pointHoverBorderColor: "#4BD56D",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.sad
             },
             {
-              label: "angry 😡",
+              label: "Angry",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "red",
-              borderColor: "red",
+              backgroundColor: "#FFB26B",
+              borderColor: "#FFB26B",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor: "red",
-              pointBackgroundColor: "red",
+              pointBorderColor: "#FFB26B",
+              pointBackgroundColor: "#FFB26B",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(133, 190, 212)",
@@ -108,17 +107,17 @@ class LineChart extends Component {
               data: emotionRefObj.angry
             },
             {
-              label: "fearful 😬",
+              label: "Fearful",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "black",
-              borderColor: "black",
+              backgroundColor:"#B5FD9D",
+              borderColor:"#B5FD9D",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor: "red",
-              pointBackgroundColor: "red",
+              pointBorderColor: "#B5FD9D",
+              pointBackgroundColor: "#B5FD9D",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(133, 190, 212)",
@@ -129,17 +128,17 @@ class LineChart extends Component {
               data: emotionRefObj.fearful
             },
             {
-              label: "disgusted 🤢",
+              label: "Disgusted",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "rgba(48, 68, 36, 0.733)",
-              borderColor: "rgba(48, 68, 36, 0.733)",
+              backgroundColor: "#82BDCE",
+              borderColor: "#82BDCE",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor: "rgba(48, 68, 36, 0.733)",
-              pointBackgroundColor: "rgba(48, 68, 36, 0.733)",
+              pointBorderColor: "#82BDCE",
+              pointBackgroundColor: "#82BDCE",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(133, 190, 212)",
@@ -150,17 +149,17 @@ class LineChart extends Component {
               data: emotionRefObj.disgusted
             },
             {
-              label: "surprised 😮",
+              label: "Surprised",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: "orange",
-              borderColor: "orange",
+              backgroundColor: "#CADECB",
+              borderColor: "#CADECB",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor: "orange",
-              pointBackgroundColor: "orange",
+              pointBorderColor: "#CADECB",
+              pointBackgroundColor: "#CADECB",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(133, 190, 212)",
@@ -176,28 +175,72 @@ class LineChart extends Component {
     });
   };
 
+  selectTime = ({ target }) => {
+    this.setState({ time: target.name });
+  };
+
   componentDidMount() {
-    console.log("mounted");
     const { username } = this.props;
-    setInterval(() => {
-      console.log("interval");
-      this.getState(username);
-    }, 1000);
+    this.getState(username);
   }
 
+  smoothScroll = position => {
+    if (position === "liveGraph") {
+      window.scroll({
+        top: window.innerHeight,
+        left: 0
+      });
+    }
+  };
+
   state = {
-    data: {}
+    data: {},
+    buttonRef: {
+      "09:00": "10:00",
+      "10:00": "11:00",
+      "11:00": "12:00",
+      "12:00": "13:00",
+      "13:00": "14:00",
+      "14:00": "15:00",
+      "15:00": "16:00",
+      "16:00": "17:00"
+    },
+    time: undefined
   };
 
   render() {
-    const { data } = this.state;
+    const { data, buttonRef, time } = this.state;
+    const { username } = this.props;
     return (
-      <section className="dlCharts">
-        <h3 className="LineHead">
-          <u>Example Line Chart</u>
-        </h3>
-        <Line data={data} />
-      </section>
+      <div className="chartHolster flex flex-row w-screen flex-wrap">
+        <section className="dlCharts shadow-2xl rounded-lg">
+          <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
+            Your Day
+          </h3>
+          <Line data={data} />
+          {Object.keys(buttonRef).map(key => {
+            return (
+              <button
+                onClick={this.selectTime}
+                name={key}
+              >{`${key} - ${buttonRef[key]}`}</button>
+            );
+          })}
+          <button onClick={this.selectTime}>All Day</button>
+        </section>
+        <Donut username={username} time={time} refObj={buttonRef} />
+        <div className="linkHolster shadow-2xl rounded-lg">
+          <a
+            href="#liveGraph"
+            onClick={() => {
+              this.smoothScroll("liveGraph");
+            }}
+          >
+            Link to Emo data
+          </a>
+        </div>
+        <div className="hintHolster shadow-2xl rounded-lg">Helpful Hint</div>
+      </div>
     );
   }
 }

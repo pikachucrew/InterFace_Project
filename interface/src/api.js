@@ -17,9 +17,11 @@ export const getEmotions = async (username, from, to) => {
   const baseUrl = `https://interface-backend-heroku.herokuapp.com/${username}`;
   const emotions = await axios.get(baseUrl, {
     params: {
-      to,
-      from
+      from,
+      to
     }
-  });
+  }).catch(err => {
+    console.log(err)
+  })
   return emotions;
 };
