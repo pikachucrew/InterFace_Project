@@ -42,7 +42,7 @@ const lineManipulator = arr => {
 
   arr.forEach(tableRow => {
     const hour = tableRow[8].slice(0, 2);
-    if (hour === '09') {
+    if (hour === "09") {
       nine = nine + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[0] += num;
@@ -54,7 +54,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[0] += num;
       });
     }
-    if (hour === '10') {
+    if (hour === "10") {
       ten = ten + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[1] += num;
@@ -66,7 +66,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[1] += num;
       });
     }
-    if (hour === '11') {
+    if (hour === "11") {
       eleven = eleven + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[2] += num;
@@ -78,7 +78,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[2] += num;
       });
     }
-    if (hour === '12') {
+    if (hour === "12") {
       twelve = twelve + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[3] += num;
@@ -90,7 +90,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[3] += num;
       });
     }
-    if (hour === '13') {
+    if (hour === "13") {
       one = one + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[4] += num;
@@ -102,7 +102,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[4] += num;
       });
     }
-    if (hour === '14') {
+    if (hour === "14") {
       two = two + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[5] += num;
@@ -114,7 +114,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[5] += num;
       });
     }
-    if (hour === '15') {
+    if (hour === "15") {
       three = three + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[6] += num;
@@ -126,7 +126,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[6] += num;
       });
     }
-    if (hour === '16') {
+    if (hour === "16") {
       four = four + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[7] += num;
@@ -138,7 +138,7 @@ const lineManipulator = arr => {
         if (i === 6) returnObj.surprised[7] += num;
       });
     }
-    if (hour === '17') {
+    if (hour === "17") {
       five = five + 1;
       tableRow.forEach((num, i) => {
         if (i === 0) returnObj.neutral[8] += num;
@@ -200,6 +200,7 @@ const lineManipulator = arr => {
 };
 
 const liveLineManipulator = arr => {
+  console.log("in manip");
   if (arr.length === 0) {
     return {
       neutral: [0, 0, 0, 0, 0, 0, 0],
@@ -214,6 +215,7 @@ const liveLineManipulator = arr => {
 
   return arr.reverse().reduce(
     (returnObj, innerArr) => {
+      console.log(innerArr);
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
           returnObj.neutral.push(num);
@@ -253,7 +255,7 @@ const liveLineManipulator = arr => {
 
 const checkTime = i => {
   if (i < 10) {
-    i = '0' + i;
+    i = "0" + i;
   }
   return i;
 };
@@ -267,11 +269,17 @@ const getTime = () => {
   if (minutes === 0) {
     hours--;
     minutes = 59;
+  } else if (minutes < 10) {
+    minutes = "0" + minutes--;
   } else {
     minutes--;
   }
 
-  return hours + ':' + minutes + ':' + seconds;
+  if (hours < 10) {
+    hours = "0" + hours
+  }
+
+  return hours + ":" + minutes + ":" + seconds;
 };
 
 module.exports = {
