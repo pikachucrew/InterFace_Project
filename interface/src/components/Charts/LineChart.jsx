@@ -3,7 +3,7 @@ import Donut from "./Donut";
 import { Line } from "react-chartjs-2";
 import * as api from "../../api";
 import { lineManipulator } from "../../utils/dataUtils";
-import chartLogo from "../../assets/noun_Pie Chart_2182559.png";
+import downArrow from "../../assets/down_arrow.png";
 import Hint from "./Hints"
 class LineChart extends Component {
   getState = username => {
@@ -214,16 +214,17 @@ class LineChart extends Component {
     const { username } = this.props;
     return (
       <div className="chartHolster flex flex-row w-screen flex-wrap">
+        <Donut username={username} time={time} refObj={buttonRef} />
         <section className="dlCharts shadow-2xl rounded-lg">
-          <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
+          {/* <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
             Your Day
-          </h3>
+          </h3> */}
           <Line data={data} />
-          <div className="w-full flex flex-wrap justify-around mt-10">
+          <div className="w-full flex flex-wrap justify-around">
             {Object.keys(buttonRef).map(key => {
               return (
                 <button
-                  className="bg-blue-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded buttpad flex-grow-0"
+                  className="dashButts chartButts rounded-lg"
                   onClick={this.selectTime}
                   name={key}
                 >{`${key} - ${buttonRef[key]}`}</button>
@@ -231,24 +232,23 @@ class LineChart extends Component {
             })}
             <button
               onClick={this.selectTime}
-              className="bg-blue-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded buttpad flex-grow "
+              className="flex-grow dashButts chartButts rounded-lg"
             >
               All Day
             </button>
           </div>
         </section>
-        <Donut username={username} time={time} refObj={buttonRef} />
-        <div className="linkHolster shadow-2xl rounded-lg flex flex-row justify-between">
+        <div className="linkHolster shadow-2xl rounded-lg flex flex-row justify-center">
           <a
             href="#liveGraph"
             onClick={() => {
               this.smoothScroll("liveGraph");
             }}
-            className="chartTitle font-bold text-3xl flex flex-column"
+            className="chartTitle font-bold text-2xl flex flex-column"
           >
-            Live Emotional Feed
+            Live Data
           </a>
-          <img src={chartLogo} className="h-20" />
+          <img src={downArrow} className="downArrow" />
         </div>
         <Hint />
       </div>

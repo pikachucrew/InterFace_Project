@@ -43,15 +43,16 @@ function Hints() {
   return (
     <div className="hintHolster rounded-lg shadow-lg">
       <p className="hintTitle">{hint.title} </p>
-
-      <p className="flex flex-row hintFont m-10 mt-5 mb-5">
+      <div className="flex flex-row ">
+      <p className="hintFont">
         {hint.hint}
-        <img
-          src={hint.icon}
-          alt="icon of person walking"
-          className="h-20 m-5 mt-0 font-h2"
-        />
       </p>
+      <img
+        src={hint.icon}
+        alt="icon of person walking"
+        className="h-20 mt-0 hintIcon"
+      />
+      </div>
     </div>
   );
 }

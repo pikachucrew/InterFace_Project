@@ -4,6 +4,7 @@ import * as faceapi from "face-api.js";
 import fire from "../config";
 import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
+import gif from "../assets/video-camera.gif"
 
 export default class Dashboard extends Component {
   state = {
@@ -12,12 +13,13 @@ export default class Dashboard extends Component {
 
   render() {
     const { user } = this.props;
-    return (
+    return (  
       <div className="dashboard">
         <div className="slide-in font-header buttsContainer flex flex-row w-screen justify-center gains">
         <button
           onClick={() => {
-            utils.startDetection(true, user);
+            utils.startDetection(true, user)
+            this.stateSwitch()
           }}
           className="dashButts rounded"
         >
@@ -26,7 +28,9 @@ export default class Dashboard extends Component {
         <button
           onClick={() => {
             utils.stopStream()
-          }}
+            this.stateSwitch()
+            }
+          }
             className="dashButts rounded "
         >
           Stop detection
@@ -42,19 +46,28 @@ export default class Dashboard extends Component {
         >
           Log Out
         </button>
+          {
+            this.state.videoPresent && (
+              <div className="recording">
+              <img src={gif} className="gif"></img>
+              <p className="gifP">Streaming...</p>
+              </div>
+            )
+          }
         </div>
-        {this.state.videoPresent && (
+        {/* {this.state.videoPresent && (
           <video
             autoPlay={true}
             id="videoElement"
             width="640"
             height="480"
           ></video>
-        )}
-        {!this.state.videoPresent && (
+        )} */}
+        {/* {!this.state.videoPresent && ( */}
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
-        )}
+        {/* )} */}
         <DataVisualisation user={user}/>
+        
       </div>
     );
   }
@@ -73,4 +86,10 @@ export default class Dashboard extends Component {
   logout = e => {
     fire.auth().signOut();
   };
+
+  stateSwitch = () => {
+    this.setState((currentState) => {
+      return {videoPresent: !currentState.videoPresent}
+    })
+  }
 }

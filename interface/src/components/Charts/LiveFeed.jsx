@@ -6,8 +6,8 @@ import { liveLineManipulator, getTime } from "../../utils/dataUtils";
 class LiveFeed extends Component {
   getState = username => {
     const time = getTime();
-    api.getEmotions(username, getTime()).then(response => {
-      const emotionRefObj = liveLineManipulator(response.data);
+    api.getEmotions(username, getTime()).then(({ data }) => {
+      const emotionRefObj = liveLineManipulator(data);
       this.setState({
         data: {
           labels: [
@@ -167,11 +167,7 @@ class LiveFeed extends Component {
               pointHitRadius: 10,
               data: emotionRefObj.surprised
             }
-          ],
-          options: {
-            responsive: true,
-            aintainAspectRatio: false
-          }
+          ]
         }
       });
     });
@@ -192,15 +188,12 @@ class LiveFeed extends Component {
     
     const { data } = this.state;
     return (
-      <div className="flex flex-column flex-wrap">
-        <section className="liveChartHolster shadow-2xl rounded-lg lfChart h-64 w-64">
+        <section className="liveChartHolster shadow-2xl rounded-lg lfChart">
           <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
             Live Feed
           </h3>
-
           <Line data={data} />
         </section>
-      </div>
       
     );
   }
