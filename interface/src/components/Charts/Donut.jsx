@@ -91,7 +91,7 @@ class Donut extends Component {
     return (
       <section className="dlCharts shadow-2xl rounded-lg">
         <h3 className="DoughnutHead chartTitle text-3xl font-bold mb-5">
-          Emotional Ratio
+          Emotional Breakdown
         </h3>
         <Doughnut
           data={data}

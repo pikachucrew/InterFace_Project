@@ -150,14 +150,14 @@ class LiveFeed extends Component {
               label: "Surprised",
               fill: false,
               lineTension: 0.1,
-              backgroundColor:   "#CADECB",
-              borderColor:   "#CADECB",
+              backgroundColor: "#CADECB",
+              borderColor: "#CADECB",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: "miter",
-              pointBorderColor:   "#CADECB",
-              pointBackgroundColor:   "#CADECB",
+              pointBorderColor: "#CADECB",
+              pointBackgroundColor: "#CADECB",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointHoverBackgroundColor: "rgba(133, 190, 212)",
@@ -167,32 +167,41 @@ class LiveFeed extends Component {
               pointHitRadius: 10,
               data: emotionRefObj.surprised
             }
-          ]
+          ],
+          options: {
+            responsive: true,
+            aintainAspectRatio: false
+          }
         }
       });
     });
   };
-
+  
   componentDidMount() {
     const { username } = this.props;
     setInterval(() => {
       this.getState(username);
     }, 1000);
   }
-
+  
   state = {
     data: {}
   };
-
+  
   render() {
+    
     const { data } = this.state;
     return (
-      <section className="liveChartHolster shadow-2xl rounded-lg lfChart">
-        <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
-         Live Feed
-        </h3>
-        <Line data={data} />
-      </section>
+      <div className="flex flex-column flex-wrap">
+        <section className="liveChartHolster shadow-2xl rounded-lg lfChart h-64 w-64">
+          <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
+            Live Feed
+          </h3>
+
+          <Line data={data} />
+        </section>
+      </div>
+      
     );
   }
 }
