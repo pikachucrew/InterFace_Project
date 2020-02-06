@@ -3,7 +3,8 @@ import Donut from "./Donut";
 import { Line } from "react-chartjs-2";
 import * as api from "../../api";
 import { lineManipulator } from "../../utils/dataUtils";
-
+import chartLogo from "../../assets/noun_Pie Chart_2182559.png";
+import Hint from "./Hints"
 class LineChart extends Component {
   getState = username => {
     api.getEmotions(username, "09:00:00").then(({ data }) => {
@@ -237,17 +238,19 @@ class LineChart extends Component {
           </div>
         </section>
         <Donut username={username} time={time} refObj={buttonRef} />
-        <div className="linkHolster shadow-2xl rounded-lg">
+        <div className="linkHolster shadow-2xl rounded-lg flex flex-row justify-between">
           <a
             href="#liveGraph"
             onClick={() => {
               this.smoothScroll("liveGraph");
             }}
+            className="chartTitle font-bold text-3xl flex flex-column"
           >
-            Link to Emo data
+            Live Emotional Feed
           </a>
+          <img src={chartLogo} className="h-20" />
         </div>
-        <div className="hintHolster shadow-2xl rounded-lg">Helpful Hint</div>
+        <Hint />
       </div>
     );
   }
