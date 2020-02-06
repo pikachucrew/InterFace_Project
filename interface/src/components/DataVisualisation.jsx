@@ -5,8 +5,10 @@ import React from 'react';
 const DataVisualisation = ({ user }) => {
   return (
     <div>
-      <LiveFeed username={user} />
       <LineChart username={user} />
+      <div >
+       <LiveFeed username={user}/>
+      </div>
     </div>
   );
 };

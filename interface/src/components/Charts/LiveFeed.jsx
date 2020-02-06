@@ -1,167 +1,168 @@
-import React, { Component } from 'react';
-import { Line } from 'react-chartjs-2';
-import * as api from '../../api';
-import { liveLineManipulator, getTime } from '../../utils/dataUtils';
+import React, { Component } from "react";
+import { Line } from "react-chartjs-2";
+import * as api from "../../api";
+import { liveLineManipulator, getTime } from "../../utils/dataUtils";
+import upArrow from "../../assets/up_arrow.png"
 
 class LiveFeed extends Component {
   getState = username => {
     const time = getTime();
-    api.getEmotions(username, getTime()).then((response) => {
-      const emotionRefObj = liveLineManipulator(response.data);
+    api.getEmotions(username, getTime()).then(({ data }) => {
+      const emotionRefObj = liveLineManipulator(data);
       this.setState({
         data: {
           labels: [
-            'now',
-            '-1 sec',
-            '-2 sec',
-            '-3 sec',
-            '-4 sec',
-            '-5 sec',
-            '-6 sec'
+            "now",
+            "-1 sec",
+            "-2 sec",
+            "-3 sec",
+            "-4 sec",
+            "-5 sec",
+            "-6 sec"
           ],
           datasets: [
             {
-              label: 'neutral 😐',
+              label: "Neutral",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'green',
-              borderColor: 'green',
-              borderCapStyle: 'butt',
+              backgroundColor: "#FF9494",
+              borderColor: "#FF9494",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'black',
-              pointBackgroundColor: 'green',
+              borderJoinStyle: "miter",
+              pointBorderColor: "black",
+              pointBackgroundColor: "#FF9494",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'green',
-              pointHoverBorderColor: 'green',
+              pointHoverBackgroundColor: "#FF9494",
+              pointHoverBorderColor: "#FF9494",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.neutral
             },
             {
-              label: 'happy 😀',
+              label: "Happy",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'yellow',
-              borderColor: 'yellow',
-              borderCapStyle: 'butt',
+              backgroundColor: "#C8B1FE",
+              borderColor: "#C8B1FE",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(75,192,192,1)',
-              pointBackgroundColor: 'yellow',
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#C8B1FE",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'yellow',
-              pointHoverBorderColor: 'yellow',
+              pointHoverBackgroundColor: "#C8B1FE",
+              pointHoverBorderColor: "#C8B1FE",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.happy
             },
             {
-              label: 'sad 🙁',
+              label: "Sad",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'rgba(133, 190, 212)',
-              borderColor: 'rgba(133, 190, 212)',
-              borderCapStyle: 'butt',
+              backgroundColor: "#CADECB",
+              borderColor: "#CADECB",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(75,192,192,1)',
-              pointBackgroundColor: 'rgba(133, 190, 212)',
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#CADECB",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(133, 190, 212)',
-              pointHoverBorderColor: 'rgba(133, 190, 212)',
+              pointHoverBackgroundColor: "#CADECB",
+              pointHoverBorderColor: "#CADECB",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.sad
             },
             {
-              label: 'angry 😡',
+              label: "Angry",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'red',
-              borderColor: 'red',
-              borderCapStyle: 'butt',
+              backgroundColor: "#FFB26B",
+              borderColor: "#FFB26B",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'red',
-              pointBackgroundColor: 'red',
+              borderJoinStyle: "miter",
+              pointBorderColor: "#FFB26B",
+              pointBackgroundColor: "#FFB26B",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(133, 190, 212)',
-              pointHoverBorderColor: 'rgba(133, 190, 212)',
+              pointHoverBackgroundColor: "rgba(133, 190, 212)",
+              pointHoverBorderColor: "rgba(133, 190, 212)",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.angry
             },
             {
-              label: 'fearful 😬',
+              label: "Fearful",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'black',
-              borderColor: 'black',
-              borderCapStyle: 'butt',
+              backgroundColor: "#B5FD9D",
+              borderColor: "#B5FD9D",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'red',
-              pointBackgroundColor: 'red',
+              borderJoinStyle: "miter",
+              pointBorderColor: "#B5FD9D",
+              pointBackgroundColor: "#B5FD9D",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(133, 190, 212)',
-              pointHoverBorderColor: 'rgba(133, 190, 212)',
+              pointHoverBackgroundColor: "rgba(133, 190, 212)",
+              pointHoverBorderColor: "rgba(133, 190, 212)",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.fearful
             },
             {
-              label: 'disgusted 🤢',
+              label: "Disgusted",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'rgba(48, 68, 36, 0.733)',
-              borderColor: 'rgba(48, 68, 36, 0.733)',
-              borderCapStyle: 'butt',
+              backgroundColor: "#82BDCE",
+              borderColor: "#82BDCE",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(48, 68, 36, 0.733)',
-              pointBackgroundColor: 'rgba(48, 68, 36, 0.733)',
+              borderJoinStyle: "miter",
+              pointBorderColor: "#82BDCE",
+              pointBackgroundColor: "#82BDCE",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(133, 190, 212)',
-              pointHoverBorderColor: 'rgba(133, 190, 212)',
+              pointHoverBackgroundColor: "rgba(133, 190, 212)",
+              pointHoverBorderColor: "rgba(133, 190, 212)",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
               data: emotionRefObj.disgusted
             },
             {
-              label: 'surprised 😮',
+              label: "Surprised",
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'orange',
-              borderColor: 'orange',
-              borderCapStyle: 'butt',
+              backgroundColor: "#4BD56D",
+              borderColor: "#4BD56D",
+              borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'orange',
-              pointBackgroundColor: 'orange',
+              borderJoinStyle: "miter",
+              pointBorderColor: "#4BD56D",
+              pointBackgroundColor: "#4BD56D",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(133, 190, 212)',
-              pointHoverBorderColor: 'rgba(133, 190, 212)',
+              pointHoverBackgroundColor: "rgba(133, 190, 212)",
+              pointHoverBorderColor: "rgba(133, 190, 212)",
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
@@ -172,27 +173,49 @@ class LiveFeed extends Component {
       });
     });
   };
-
+  
   componentDidMount() {
     const { username } = this.props;
     setInterval(() => {
       this.getState(username);
     }, 1000);
   }
-
+  
   state = {
     data: {}
   };
 
+  smoothScroll = position => {
+    if (position === 'top') {
+      window.scroll(
+        {
+          top: 0,
+          left: 0
+        }
+      )
+    }
+  }
+  
   render() {
+    
     const { data } = this.state;
     return (
-      <section>
-        <h3 className="LineHead">
-          <u>Live Feed</u>
-        </h3>
-        <Line data={data} />
-      </section>
+      <div className="flex flex-column justify-between align-center daddyDiv">
+        <section className="liveChartHolster shadow-2xl rounded-lg lfChart">
+          <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
+            Live Feed
+          </h3>
+          <Line data={data} />
+        </section>
+        <div className="upLink shadow-2xl rounded-lg flex flex-col justify-center items-center" onClick={() => {
+          this.smoothScroll("top");
+        }}>
+          <p className="chartTitle font-bold text-2xl ">
+            Return to Top
+          </p>
+          <img src={upArrow} className="upArrow" />
+        </div>
+      </div>
     );
   }
 }
