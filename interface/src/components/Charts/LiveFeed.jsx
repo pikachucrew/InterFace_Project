@@ -6,8 +6,10 @@ import { liveLineManipulator, getTime } from '../../utils/dataUtils';
 class LiveFeed extends Component {
   getState = username => {
     const time = getTime();
-    api.getEmotions(username, getTime()).then((response) => {
-      const emotionRefObj = liveLineManipulator(response.data);
+    const {checkAlert} = this.props
+    api.getEmotions(username, getTime()).then(({data}) => {
+      checkAlert(data)
+      const emotionRefObj = liveLineManipulator(data);
       this.setState({
         data: {
           labels: [
