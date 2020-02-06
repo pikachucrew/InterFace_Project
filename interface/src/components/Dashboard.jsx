@@ -9,14 +9,17 @@ import { Helmet } from "react-helmet";
 export default class Dashboard extends Component {
   state = {
     videoPresent: false,
-    startTime: null,
+    // startTime: null,
     showAlert: false,
     streaming: false
   };
 
   render() {
     const { user } = this.props;
-    const { startTime, showAlert, streaming } = this.state;
+    const { 
+      // startTime, 
+      showAlert, 
+      streaming } = this.state;
     return (
       <div className="dashboard">
         {showAlert && (
@@ -33,7 +36,7 @@ export default class Dashboard extends Component {
             onClick={() => {
               utils.startDetection(true, user);
               this.setState({
-                startTime: Date.now(),
+                // startTime: Date.now(),
                 streaming: true
               });
             }}
@@ -44,7 +47,7 @@ export default class Dashboard extends Component {
           <button
             onClick={() => {
               utils.stopStream();
-              this.setState({ streaming: false });
+              this.setState({ streaming: false, showAlert: false });
             }}
             className="dashButts rounded "
           >
@@ -70,7 +73,7 @@ export default class Dashboard extends Component {
         )}
         <DataVisualisation
           user={user}
-          startTime={startTime}
+          // startTime={startTime}
           alertOn={this.alertOn}
           streaming={streaming}
           alertOff={this.alertOff}

@@ -8,28 +8,35 @@ class LiveFeed extends Component {
   getState = username => {
     const { startTime, streaming, alertOn, alertOff } = this.props;
     api.getEmotions(username, getTime()).then(({ data }) => {
-      console.log(data);
       const emotionRefObj = liveLineManipulator(data);
       const time = Date.now();
       const emotionVals = Object.values(emotionRefObj);
+      const { startTime } = this.state;
       let count = 0;
       emotionVals.forEach(arr => {
         if (data.length && arr.every(item => item === 0)) {
           count++;
         }
-        if (streaming && count === emotionVals.length) {
-          console.log("You gone?")
-          alertOff();
-        } else if (
+        
+        if (count !== emotionVals.length && !startTime) {
+          this.setState({ startTime: Date.now() });
+        }
+      else if (
           streaming &&
           data.length &&
           count !== emotionVals.length &&
-          time - startTime >= 90000
+          time - startTime >= 60000
         ) {
-          console.log("you're there, aintcha?")
+          console.log("you're there, aintcha?");
           alertOn();
+        } else if  (streaming && count === emotionVals.length) {
+          console.log("You gone?");
+          alertOff();
+          this.setState({ startTime: null });
         }
       });
+
+      // if (!data.length || count === emotionVals.length)
 
       this.setState({
         data: {
@@ -198,13 +205,15 @@ class LiveFeed extends Component {
 
   componentDidMount() {
     const { username } = this.props;
+    this.setState({ startTime: Date.now() });
     setInterval(() => {
       this.getState(username);
     }, 1000);
   }
 
   state = {
-    data: {}
+    data: {},
+    startTime: null
   };
 
   render() {
