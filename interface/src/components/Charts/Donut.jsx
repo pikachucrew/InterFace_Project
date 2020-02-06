@@ -1,7 +1,7 @@
-import { Doughnut } from 'react-chartjs-2';
-import React, { Component } from 'react';
-import * as api from '../../api';
-import {donutManipulator} from '../../utils/dataUtils';
+import { Doughnut } from "react-chartjs-2";
+import React, { Component } from "react";
+import * as api from "../../api";
+import { donutManipulator } from "../../utils/dataUtils";
 
 class Donut extends Component {
   state = {
@@ -14,34 +14,25 @@ class Donut extends Component {
       this.setState({
         data: {
           labels: [
-            "neutral 😐",
-            "happy 😀",
-            "sad 🙁",
-            "angry 😡",
-            "fearful 😬",
-            "disgusted 🤢",
-            "surprised 😮"
+            "Neutral",
+            "Happy",
+            "Sad",
+            "Angry",
+            "Fearful",
+            "Disgusted",
+            "Surprised"
           ],
           datasets: [
             {
               data: donutManipulator(data),
               backgroundColor: [
-                "green",
-                "yellow",
-                "rgba(133, 190, 212)",
-                "red",
-                "black",
-                "rgba(48, 68, 36, 0.733)",
-                "orange"
-              ],
-              hoverBackgroundColor: [
-                "green",
-                "yellow",
-                "rgba(133, 190, 212)",
-                "red",
-                "black",
-                "rgba(48, 68, 36, 0.733)",
-                "orange"
+                "#FF9494",
+                "#C8B1FE",
+                "#CADECB",
+                "#FFB26B",
+                "#B5FD9D",
+                "#82BDCE",
+                "#4BD56D"
               ]
             }
           ]
@@ -57,34 +48,34 @@ class Donut extends Component {
         this.setState({
           data: {
             labels: [
-              'neutral 😐',
-              'happy 😀',
-              'sad 🙁',
-              'angry 😡',
-              'fearful 😬',
-              'disgusted 🤢',
-              'surprised 😮'
+              "Neutral",
+              "Happy",
+              "Sad",
+              "Angry",
+              "Fearful",
+              "Disgusted",
+              "Surprised"
             ],
             datasets: [
               {
                 data: donutManipulator(data),
                 backgroundColor: [
-                  'green',
-                  'yellow',
-                  'rgba(133, 190, 212)',
-                  'red',
-                  'black',
-                  'rgba(48, 68, 36, 0.733)',
-                  'orange'
+                  "#FF9494",
+                  "#C8B1FE",
+                  "#CADECB",
+                  "#FFB26B",
+                  "#B5FD9D",
+                  "#82BDCE",
+                  "#4BD56D"
                 ],
                 hoverBackgroundColor: [
-                  'green',
-                  'yellow',
-                  'rgba(133, 190, 212)',
-                  'red',
-                  'black',
-                  'rgba(48, 68, 36, 0.733)',
-                  'orange'
+                  "#FF9494",
+                  "#C8B1FE",
+                  "#CADECB",
+                  "#FFB26B",
+                  "#B5FD9D",
+                  "#82BDCE",
+                  "#4BD56D"
                 ]
               }
             ]
@@ -97,16 +88,16 @@ class Donut extends Component {
   render() {
     const { data } = this.state;
     return (
-      <section>
-        <h3 className="DoughnutHead">
-          <u>Emotional Ratio</u>
+      <section className="dlCharts shadow-2xl rounded-lg">
+        <h3 className="DoughnutHead chartTitle text-3xl font-bold mb-5">
+          Emotional Breakdown
         </h3>
         <Doughnut
           data={data}
           options={{
             legend: {
               labels: {
-                fontColor: 'Blue'
+                fontColor: "dimgray"
               }
             }
           }}

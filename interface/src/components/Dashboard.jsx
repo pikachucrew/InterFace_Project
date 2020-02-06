@@ -5,24 +5,23 @@ import fire from "../config";
 import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
 import { Helmet } from "react-helmet";
+import gif from "../assets/video-camera.gif"
 
 export default class Dashboard extends Component {
   state = {
     videoPresent: false,
-    // startTime: null,
     showAlert: false,
     streaming: false
   };
 
   render() {
     const { user } = this.props;
-    const { 
-      // startTime, 
+ const { 
       showAlert, 
-      streaming } = this.state;
-    return (
+      streaming } = this.state;    
+return (  
       <div className="dashboard">
-        {showAlert && (
+         {showAlert && (
           <div>
             {" "}
             <Helmet>
@@ -31,24 +30,27 @@ export default class Dashboard extends Component {
             <p>You've been active for aaages. Break?</p>
           </div>
         )}
-        <div className="flex flex-row w-screen justify-center fixed">
-          <button
-            onClick={() => {
-              utils.startDetection(true, user);
-              this.setState({
-                // startTime: Date.now(),
-                streaming: true
-              });
-            }}
-            className="dashButts rounded"
-          >
-            Start detection
-          </button>
-          <button
-            onClick={() => {
-              utils.stopStream();
-              this.setState({ streaming: false, showAlert: false });
-            }}
+        <div className="slide-in font-header buttsContainer flex flex-row w-screen justify-center gains">
+        <button
+          onClick={() => {
+            utils.startDetection(true, user)
+            this.stateSwitch()
+             this.setState( {
+                streaming: true,
+                videoPresent: true
+               }
+              );
+          }}
+          className="dashButts rounded"
+        >
+          Start detection
+        </button>
+        <button
+          onClick={() => {
+            utils.stopStream()
+              this.setState({ streaming: false, showAlert: false, videoPresent: false });
+            }
+          }
             className="dashButts rounded "
           >
             Stop detection
@@ -59,21 +61,24 @@ export default class Dashboard extends Component {
           <button onClick={this.logout} className="dashButts rounded ">
             Log Out
           </button>
+        <button
+          onClick={this.logout}
+            className="dashButts rounded "
+        >
+          Log Out
+        </button>
+          {
+            this.state.videoPresent && (
+              <div className="recording">
+              <img src={gif} className="gif"></img>
+              <p className="gifP">Streaming...</p>
+              </div>
+            )
+          }
         </div>
-        {this.state.videoPresent && (
-          <video
-            autoPlay={true}
-            id="videoElement"
-            width="640"
-            height="480"
-          ></video>
-        )}
-        {!this.state.videoPresent && (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
-        )}
         <DataVisualisation
           user={user}
-          // startTime={startTime}
           alertOn={this.alertOn}
           streaming={streaming}
           alertOff={this.alertOff}

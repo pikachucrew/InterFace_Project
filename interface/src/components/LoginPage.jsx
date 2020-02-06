@@ -43,7 +43,7 @@ class LoginPage extends Component {
     const { email, password, invalid } = this.state;
     return (
       <div className="flex flex-row">
-        <p className="w-2/5 bg-white opacity-75 shadow-2xl absolute p-20 m-20 mt-40 font-disc">
+        <p className="w-2/5 bg-white opacity-75 shadow-2xl absolute p-20 m-20 mt-40 font-disc rounded-lg">
           Interface is committed to honoring your rights to data privacy and
           protection. <br />
           <br />
@@ -55,7 +55,7 @@ class LoginPage extends Component {
           We have a privacy conscious culture, strongly supported by GDPR.
         </p>
 
-        <div className="w-2/5 p-20 m-20 mt-40 shadow-2xl absolute right-0">
+        <div className="w-2/5 p-20 m-20 mt-40 shadow-2xl absolute right-0 rounded-lg">
           {invalid && <p>Invalid Details</p>}
           <div className="flex flex-col justify-between items-center">
             <h2 className="font-h2 tracking-widest text-4xl">Log In</h2>

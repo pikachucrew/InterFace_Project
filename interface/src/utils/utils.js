@@ -117,5 +117,4 @@ export const stopStream = () => {
       track.stop()
     })
   }
-  
 }
