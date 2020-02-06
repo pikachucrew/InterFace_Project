@@ -238,16 +238,14 @@ class LineChart extends Component {
             </button>
           </div>
         </section>
-        <div className="linkHolster shadow-2xl rounded-lg flex flex-row justify-center">
-          <a
-            href="#liveGraph"
-            onClick={() => {
-              this.smoothScroll("liveGraph");
-            }}
+        <div className="linkHolster shadow-2xl rounded-lg flex flex-row justify-center" onClick={() => {
+          this.smoothScroll("liveGraph");
+        }}>
+            <p
             className="chartTitle font-bold text-2xl flex flex-column"
           >
             Live Data
-          </a>
+          </p>
           <img src={downArrow} className="downArrow" />
         </div>
         <Hint />

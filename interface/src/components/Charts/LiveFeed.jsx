@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import * as api from "../../api";
 import { liveLineManipulator, getTime } from "../../utils/dataUtils";
+import upArrow from "../../assets/up_arrow.png"
 
 class LiveFeed extends Component {
   getState = username => {
@@ -183,18 +184,38 @@ class LiveFeed extends Component {
   state = {
     data: {}
   };
+
+  smoothScroll = position => {
+    if (position === 'top') {
+      window.scroll(
+        {
+          top: 0,
+          left: 0
+        }
+      )
+    }
+  }
   
   render() {
     
     const { data } = this.state;
     return (
+      <div className="flex flex-column justify-between align-center daddyDiv">
         <section className="liveChartHolster shadow-2xl rounded-lg lfChart">
           <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
             Live Feed
           </h3>
           <Line data={data} />
         </section>
-      
+        <div className="upLink shadow-2xl rounded-lg flex flex-col justify-center items-center" onClick={() => {
+          this.smoothScroll("top");
+        }}>
+          <p className="chartTitle font-bold text-2xl ">
+            Return to Top
+          </p>
+          <img src={upArrow} className="upArrow" />
+        </div>
+      </div>
     );
   }
 }

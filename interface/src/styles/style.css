@@ -50895,9 +50895,9 @@ body {
   margin: 1%;
   background-color: #ef925b;
   /* border: solid #cf5300 3px; */
-  padding: 2%;
-  
+  padding: 2%; 
 }
+
 .linkHolster:hover{
   /* border: solid #cf5300 3px; */
   background-color: #cf5300;
@@ -51011,4 +51011,24 @@ body {
   width: 18%;
   height: auto;
   margin-left: 10% 
+}
+
+.upLink {
+  position: absolute;
+  top: 120.8%;
+  right: 0%;
+  width: 25%;
+  height: 15%;
+  background-color: #ef925b;
+  margin: 0.5%;
+}
+
+.upArrow {
+  width: 17%;
+  height: 50%;
+}
+
+.upLink:hover {
+  background-color: #cf5300;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1)
 }

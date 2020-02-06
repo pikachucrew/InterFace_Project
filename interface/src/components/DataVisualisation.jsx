@@ -6,7 +6,7 @@ const DataVisualisation = ({ user }) => {
   return (
     <div>
       <LineChart username={user} />
-      <div className="flex flex-column justify-center align-center daddyDiv">
+      <div >
        <LiveFeed username={user}/>
       </div>
     </div>
