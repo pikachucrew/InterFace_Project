@@ -11,7 +11,6 @@ class Donut extends Component {
   componentDidMount() {
     const { username } = this.props;
     api.getEmotions(username).then(({ data }) => {
-      console.log(donutManipulator(data), "donut")
       this.setState({
         data: {
           labels: [

@@ -4,52 +4,58 @@ import * as faceapi from "face-api.js";
 import fire from "../config";
 import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export default class Dashboard extends Component {
   state = {
     videoPresent: false,
     startTime: null,
+    showAlert: false,
     streaming: false
   };
 
   render() {
     const { user } = this.props;
-    const {streaming} = this.state
+    const { startTime, showAlert, streaming } = this.state;
     return (
       <div className="dashboard">
-        <Helmet><title>Dashboard</title></Helmet>
+        {showAlert && (
+          <div>
+            {" "}
+            <Helmet>
+              <title>!Notification</title>
+            </Helmet>
+            <p>You've been active for aaages. Break?</p>
+          </div>
+        )}
         <div className="flex flex-row w-screen justify-center fixed">
-        <button
-          onClick={() => {
-            utils.startDetection(true, user);
-            this.setState({startTime: Date.now(), streaming: true});
-            setTimeout(() => {this.fireAlert()}, 20000 )
-          }}
-          className="dashButts rounded"
-        >
-          Start detection
-        </button>
-        <button
-          onClick={() => {
-            utils.stopStream()
-            this.setState({streaming: false})
-          }}
-            className="dashButts rounded "
-        >
-          Stop detection
-        </button>
-          <Link to="/webcam" className="dashButts rounded ">
-            <button>
-            View cam
+          <button
+            onClick={() => {
+              utils.startDetection(true, user);
+              this.setState({
+                startTime: Date.now(),
+                streaming: true
+              });
+            }}
+            className="dashButts rounded"
+          >
+            Start detection
           </button>
-        </Link>
-        <button
-          onClick={this.logout}
+          <button
+            onClick={() => {
+              utils.stopStream();
+              this.setState({ streaming: false });
+            }}
             className="dashButts rounded "
-        >
-          Log Out
-        </button>
+          >
+            Stop detection
+          </button>
+          <Link to="/webcam" className="dashButts rounded ">
+            <button>View cam</button>
+          </Link>
+          <button onClick={this.logout} className="dashButts rounded ">
+            Log Out
+          </button>
         </div>
         {this.state.videoPresent && (
           <video
@@ -62,7 +68,13 @@ export default class Dashboard extends Component {
         {!this.state.videoPresent && (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
         )}
-        <DataVisualisation user={user} checkAlert={this.checkAlert}/>
+        <DataVisualisation
+          user={user}
+          startTime={startTime}
+          alertOn={this.alertOn}
+          streaming={streaming}
+          alertOff={this.alertOff}
+        />
       </div>
     );
   }
@@ -78,27 +90,15 @@ export default class Dashboard extends Component {
     });
   }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   const {streaming} = this.state
-  //   if (streaming !== prevState.streaming) {
-  //     if (streaming) {const notification = setTimeout(() => {
-  //                       alert("hello");
-  //                     }, 10000);}
-  //     else clearTimeout(notification);
-  //   }
-  // }
-
   logout = e => {
     fire.auth().signOut();
   };
 
-  fireAlert = () => {
-const {streaming} = this.state;
-streaming && alert("hello")
-  }
+  alertOn = () => {
+    this.setState({ showAlert: true });
+  };
 
-  checkAlert =(arr) =>{
-if(arr.length === 0 ){this.setState({streaming:false})}
-  }
-
+  alertOff = () => {
+    this.setState({ showAlert: false });
+  };
 }

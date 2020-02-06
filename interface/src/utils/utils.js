@@ -67,7 +67,6 @@ export const startDetection = (bool, username) => {
         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions();
-      console.log(detections);
       api.postEmotions(detections, username);
     }, 1000);
   });

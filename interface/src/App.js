@@ -19,7 +19,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.user);
+
     this.authListener();
   }
 
@@ -35,7 +35,6 @@ export default class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(user);
     return (
       <div className="App" class="h-2screens bg-fixed" style={bgStyle}>
         <Header className="Header" />

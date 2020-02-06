@@ -5,7 +5,6 @@ import * as utils from "../utils/utils";
 
 export default class CamPage extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="w-screen h-screen">
         <h2>Webcam</h2>
