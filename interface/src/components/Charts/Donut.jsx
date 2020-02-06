@@ -29,11 +29,11 @@ class Donut extends Component {
               backgroundColor: [
                 "#FF9494",
                 "#C8B1FE",
-                "#4BD56D",
+                "#CADECB",
                 "#FFB26B",
                 "#B5FD9D",
                 "#82BDCE",
-                "#CADECB"
+                "#4BD56D"
               ]
             }
           ]
@@ -63,20 +63,20 @@ class Donut extends Component {
                 backgroundColor: [
                   "#FF9494",
                   "#C8B1FE",
-                  "#4BD56D",
+                  "#CADECB",
                   "#FFB26B",
                   "#B5FD9D",
                   "#82BDCE",
-                  "#CADECB"
+                  "#4BD56D"
                 ],
                 hoverBackgroundColor: [
-                  "green",
-                  "yellow",
-                  "rgba(133, 190, 212)",
-                  "red",
-                  "black",
-                  "rgba(48, 68, 36, 0.733)",
-                  "orange"
+                  "#FF9494",
+                  "#C8B1FE",
+                  "#CADECB",
+                  "#FFB26B",
+                  "#B5FD9D",
+                  "#82BDCE",
+                  "#4BD56D"
                 ]
               }
             ]
