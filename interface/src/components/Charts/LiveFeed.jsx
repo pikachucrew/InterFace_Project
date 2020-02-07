@@ -7,33 +7,8 @@ import upArrow from "../../assets/up_arrow.png"
 
 class LiveFeed extends Component {
   getState = username => {
-    const { streaming, alertOn, alertOff } = this.props;
     api.getEmotions(username, getTime()).then(({ data }) => {
       const emotionRefObj = liveLineManipulator(data);
-      const time = Date.now();
-      const emotionVals = Object.values(emotionRefObj);
-      const { startTime } = this.state;
-      let count = 0;
-      emotionVals.forEach(arr => {
-        if (data.length && arr.every(item => item === 0)) {
-          count++;
-        }
-        
-        if (count !== emotionVals.length && !startTime) {
-          this.setState({ startTime: Date.now() });
-        }
-      else if (
-          streaming &&
-          data.length &&
-          count !== emotionVals.length &&
-          time - startTime >= 60000
-        ) {
-          alertOn();
-        } else if  (streaming && count === emotionVals.length) {
-          alertOff();
-          this.setState({ startTime: null });
-        }
-      });
 
       this.setState({
         data: {

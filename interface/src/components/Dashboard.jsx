@@ -4,39 +4,23 @@ import * as faceapi from "face-api.js";
 import fire from "../config";
 import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
-import { Helmet } from "react-helmet";
 import gif from "../assets/video-camera.gif"
 
 export default class Dashboard extends Component {
   state = {
-    videoPresent: false,
-    showAlert: false,
-    streaming: false
+    videoPresent: false
   };
 
   render() {
     const { user } = this.props;
- const { 
-      showAlert, 
-      streaming } = this.state;    
+ 
 return (  
       <div className="dashboard">
-         {showAlert && (
-          <div>
-            {" "}
-            <Helmet>
-              <title>!Notification</title>
-            </Helmet>
-            <p>You've been active for aaages. Break?</p>
-          </div>
-        )}
         <div className="slide-in font-header buttsContainer flex flex-row w-screen justify-center gains">
         <button
           onClick={() => {
             utils.startDetection(true, user)
-            this.stateSwitch()
              this.setState( {
-                streaming: true,
                 videoPresent: true
                }
               );
@@ -48,7 +32,7 @@ return (
         <button
           onClick={() => {
             utils.stopStream()
-              this.setState({ streaming: false, showAlert: false, videoPresent: false });
+              this.setState({ videoPresent: false });
             }
           }
             className="dashButts rounded "
@@ -79,9 +63,6 @@ return (
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
         <DataVisualisation
           user={user}
-          alertOn={this.alertOn}
-          streaming={streaming}
-          alertOff={this.alertOff}
         />
       </div>
     );
@@ -100,13 +81,5 @@ return (
 
   logout = e => {
     fire.auth().signOut();
-  };
-
-  alertOn = () => {
-    this.setState({ showAlert: true });
-  };
-
-  alertOff = () => {
-    this.setState({ showAlert: false });
   };
 }
