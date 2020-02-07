@@ -45,12 +45,6 @@ return (
           <button onClick={this.logout} className="dashButts rounded ">
             Log Out
           </button>
-        <button
-          onClick={this.logout}
-            className="dashButts rounded "
-        >
-          Log Out
-        </button>
           {
             this.state.videoPresent && (
               <div className="recording">

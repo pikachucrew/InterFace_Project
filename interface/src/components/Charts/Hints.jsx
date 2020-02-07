@@ -20,22 +20,10 @@ function Hints() {
       icon: walking
     },
     {
-      title: "Read Any Good Books Lately?",
-      hint:
-        "Studies have shown that individuals who frequently read fiction are better able to understand other people, empathize with them and see the world from their perspective.",
-      icon: book
-    },
-    {
       title: "Snack Time!",
       hint:
         "Adequate nutrition can raise your productivity levels by 20 percent on average.",
       icon: apple
-    },
-    {
-      title: "Doodle Bug",
-      hint:
-        "Let your mind wander as you put pen to paper for some creative free time. Research shows that doodling can stimulate new ideas and help us stay focused.",
-      icon: pen
     }
   ];
   const hint = hints[Math.floor(Math.random() * hints.length)];

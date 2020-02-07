@@ -7,6 +7,7 @@ import upArrow from "../../assets/up_arrow.png"
 
 class LiveFeed extends Component {
   getState = username => {
+    console.log(getTime())
     api.getEmotions(username, getTime()).then(({ data }) => {
       const emotionRefObj = liveLineManipulator(data);
 

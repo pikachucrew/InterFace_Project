@@ -210,7 +210,9 @@ const liveLineManipulator = arr => {
     };
   }
 
-  return arr.reverse().reduce(
+  console.log(arr.reverse().slice(0, 60))
+
+  return arr.reverse().slice(0, 60).reduce(
     (returnObj, innerArr) => {
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
@@ -256,6 +258,7 @@ const checkTime = i => {
   return i;
 };
 
+
 const getTime = () => {
   const date = new Date();
   let hours = date.getHours();
@@ -274,7 +277,7 @@ const getTime = () => {
   if (hours < 10) {
     hours = "0" + hours
   }
-
+  console.log(hours + ":" + minutes + ":" + seconds)
   return hours + ":" + minutes + ":" + seconds;
 };
 

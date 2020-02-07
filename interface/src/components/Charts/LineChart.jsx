@@ -7,7 +7,7 @@ import downArrow from "../../assets/down_arrow.png";
 import Hint from "./Hints"
 class LineChart extends Component {
   getState = username => {
-    api.getEmotions(username, "09:00:00").then(({ data }) => {
+    api.getEmotions(username).then(({ data }) => {
       const emotionRefObj = lineManipulator(data);
       this.setState({
         data: {

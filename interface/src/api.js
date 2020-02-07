@@ -25,3 +25,15 @@ export const getEmotions = async (username, from, to) => {
   })
   return emotions;
 };
+
+export const getLiveData = async (username, from) => {
+  const baseUrl = `http://callumrmckenna.pythonanywhere.com/${username}`;
+  const emotions = await axios.get(baseUrl, {
+    params: {
+      from
+    }
+  }).catch(err => {
+    console.log(err)
+  })
+  return emotions;
+}

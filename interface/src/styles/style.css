@@ -50835,7 +50835,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 14%;
+  height: 12%;
   z-index: 11;
 }
 .buttsContainer{
@@ -51031,4 +51031,8 @@ body {
 .upLink:hover {
   background-color: #cf5300;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1)
+}
+
+.imgStyle {
+  width: 5.5%
 }
