@@ -4,22 +4,42 @@ import * as faceapi from "face-api.js";
 import fire from "../config";
 import DataVisualisation from "./DataVisualisation";
 import * as utils from "../utils/utils";
+import { Helmet } from "react-helmet";
 import gif from "../assets/video-camera.gif"
 
 export default class Dashboard extends Component {
   state = {
     videoPresent: false,
+    showAlert: false,
+    streaming: false
   };
 
   render() {
     const { user } = this.props;
-    return (  
+ const { 
+      showAlert, 
+      streaming } = this.state;    
+return (  
       <div className="dashboard">
+         {showAlert && (
+          <div>
+            {" "}
+            <Helmet>
+              <title>!Notification</title>
+            </Helmet>
+            <p>You've been active for aaages. Break?</p>
+          </div>
+        )}
         <div className="slide-in font-header buttsContainer flex flex-row w-screen justify-center gains">
         <button
           onClick={() => {
             utils.startDetection(true, user)
             this.stateSwitch()
+             this.setState( {
+                streaming: true,
+                videoPresent: true
+               }
+              );
           }}
           className="dashButts rounded"
         >
@@ -28,18 +48,19 @@ export default class Dashboard extends Component {
         <button
           onClick={() => {
             utils.stopStream()
-            this.stateSwitch()
+              this.setState({ streaming: false, showAlert: false, videoPresent: false });
             }
           }
             className="dashButts rounded "
-        >
-          Stop detection
-        </button>
-          <Link to="/webcam" className="dashButts rounded ">
-            <button>
-            View cam
+          >
+            Stop detection
           </button>
-        </Link>
+          <Link to="/webcam" className="dashButts rounded ">
+            <button>View cam</button>
+          </Link>
+          <button onClick={this.logout} className="dashButts rounded ">
+            Log Out
+          </button>
         <button
           onClick={this.logout}
             className="dashButts rounded "
@@ -55,19 +76,13 @@ export default class Dashboard extends Component {
             )
           }
         </div>
-        {/* {this.state.videoPresent && (
-          <video
-            autoPlay={true}
-            id="videoElement"
-            width="640"
-            height="480"
-          ></video>
-        )} */}
-        {/* {!this.state.videoPresent && ( */}
           <video autoPlay={true} id="videoElement" width="0" height="0"></video>
-        {/* )} */}
-        <DataVisualisation user={user}/>
-        
+        <DataVisualisation
+          user={user}
+          alertOn={this.alertOn}
+          streaming={streaming}
+          alertOff={this.alertOff}
+        />
       </div>
     );
   }
@@ -87,9 +102,11 @@ export default class Dashboard extends Component {
     fire.auth().signOut();
   };
 
-  stateSwitch = () => {
-    this.setState((currentState) => {
-      return {videoPresent: !currentState.videoPresent}
-    })
-  }
+  alertOn = () => {
+    this.setState({ showAlert: true });
+  };
+
+  alertOff = () => {
+    this.setState({ showAlert: false });
+  };
 }

@@ -28,7 +28,7 @@ export const startVideo = (bool, user) => {
         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions();
-      console.log(detections);
+      // console.log(detections);
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
       faceapi.draw.drawDetections(canvas, resizedDetections);
@@ -67,7 +67,6 @@ export const startDetection = (bool, username) => {
         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions();
-      console.log(detections);
       api.postEmotions(detections, username);
     }, 1000);
   });
