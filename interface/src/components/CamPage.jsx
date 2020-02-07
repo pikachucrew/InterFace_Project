@@ -6,7 +6,6 @@ import comp from '../assets/computer.png'
 
 export default class CamPage extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="w-screen h-screen camPage flex flex-column ">
         <div className="returnButt">

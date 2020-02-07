@@ -1,8 +1,6 @@
 const donutManipulator = arr => {
   if (arr.length === 0) return [0, 0, 0, 0, 0, 0, 0];
-console.log(arr, "in donut manip")
   return arr
-    // .slice(0, -2)
     .reduce(
       (returnArray, innerArray) => {
         innerArray.forEach((num, i) => {
@@ -200,7 +198,6 @@ const lineManipulator = arr => {
 };
 
 const liveLineManipulator = arr => {
-  console.log("in manip");
   if (arr.length === 0) {
     return {
       neutral: [0, 0, 0, 0, 0, 0, 0],
@@ -215,7 +212,6 @@ const liveLineManipulator = arr => {
 
   return arr.reverse().reduce(
     (returnObj, innerArr) => {
-      console.log(innerArr);
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
           returnObj.neutral.push(num);

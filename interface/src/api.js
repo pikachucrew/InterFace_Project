@@ -5,7 +5,7 @@ export const postEmotions = (detections, username) => {
   const formattedEmotions = util.manipulateEmotions(detections);
   axios
     .post(
-      `https://interface-backend-heroku.herokuapp.com/${username}`,
+      `http://callumrmckenna.pythonanywhere.com/${username}`,
       formattedEmotions
     )
     .catch(err => {
@@ -14,7 +14,7 @@ export const postEmotions = (detections, username) => {
 };
 
 export const getEmotions = async (username, from, to) => {
-  const baseUrl = `https://interface-backend-heroku.herokuapp.com/${username}`;
+  const baseUrl = `http://callumrmckenna.pythonanywhere.com/${username}`;
   const emotions = await axios.get(baseUrl, {
     params: {
       from,

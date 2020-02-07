@@ -216,9 +216,6 @@ class LineChart extends Component {
       <div className="chartHolster flex flex-row w-screen flex-wrap">
         <Donut username={username} time={time} refObj={buttonRef} />
         <section className="dlCharts shadow-2xl rounded-lg">
-          {/* <h3 className="LineHead chartTitle text-3xl font-bold mb-5">
-            Your Day
-          </h3> */}
           <Line data={data} />
           <div className="w-full flex flex-wrap justify-around">
             {Object.keys(buttonRef).map(key => {
