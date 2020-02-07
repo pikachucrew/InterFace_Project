@@ -210,9 +210,7 @@ const liveLineManipulator = arr => {
     };
   }
 
-  console.log(arr.reverse().slice(0, 60))
-
-  return arr.reverse().slice(0, 60).reduce(
+  return arr.reverse().reduce(
     (returnObj, innerArr) => {
       innerArr.slice(0, -2).forEach((num, i) => {
         if (i === 0) {
