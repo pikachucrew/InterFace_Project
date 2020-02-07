@@ -44,15 +44,15 @@ class LoginPage extends Component {
     return (
       <div className="flex flex-row">
         <p className="w-2/5 bg-white opacity-75 shadow-2xl absolute p-20 m-20 mt-40 font-disc rounded-lg">
-          Interface is committed to honoring your rights to data privacy and
+          Interface is committed to honouring your rights to data privacy and
           protection. <br />
           <br />
-          Application of these priciples guided our development, we have no need
+          These ethical principles guided our development, we have no need
           to collect and process users' personal information beyond what is
           required for the functioning of the app, and this will never change.{' '}
           <br />
           <br />
-          We have a privacy conscious culture, strongly supported by GDPR.
+          We have a privacy conscious mindset, and do not store or send images.
         </p>
 
         <div className="w-2/5 p-20 m-20 mt-40 shadow-2xl absolute right-0 rounded-lg">
